@@ -343,3 +343,4 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
     </div>
   );
 };
+

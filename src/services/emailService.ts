@@ -56,3 +56,4 @@ export const sendContactMessage = async (data: ContactMessage): Promise<{ succes
     message: `Thank you! Your message has been submitted successfully to ${COMPANY_RECIPIENT}. We will respond within 24 hours.`
   };
 };
+

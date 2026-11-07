@@ -65,3 +65,4 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
     </Link>
   );
 };
+

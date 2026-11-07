@@ -322,3 +322,4 @@ export const PostJobModal: React.FC<PostJobModalProps> = ({ isOpen, onClose }) =
     </div>
   );
 };
+

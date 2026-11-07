@@ -198,3 +198,4 @@ export const MobileBottomBar: React.FC<MobileBottomBarProps> = ({ onOpenAuth, on
     </>
   );
 };
+

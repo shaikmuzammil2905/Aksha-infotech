@@ -432,3 +432,4 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ onOpenAp
     </div>
   );
 };
+

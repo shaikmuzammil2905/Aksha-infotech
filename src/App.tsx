@@ -7,6 +7,7 @@ import { ApplyModal } from './components/modals/ApplyModal';
 import { PostJobModal } from './components/modals/PostJobModal';
 import { AuthModal } from './components/modals/AuthModal';
 import { PolicyModal, PolicyType } from './components/modals/PolicyModal';
+import { FloatingContactPopup } from './components/common/FloatingContactPopup';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -100,6 +101,9 @@ export const App: React.FC = () => {
         onOpenPostJob={() => setIsPostJobModalOpen(true)}
       />
 
+      {/* Floating Action Quick Contact Popup */}
+      <FloatingContactPopup />
+
       {/* Modals */}
       <ApplyModal
         isOpen={isApplyModalOpen}
@@ -127,3 +131,4 @@ export const App: React.FC = () => {
   );
 };
 export default App;
+

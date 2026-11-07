@@ -80,3 +80,4 @@ npm run build
 - **Tailwind CSS 3** with custom brand color palettes and animations
 - **React Router DOM 6** for routing
 - **Lucide React** for icons
+

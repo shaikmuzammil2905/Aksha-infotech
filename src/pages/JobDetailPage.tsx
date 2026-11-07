@@ -286,3 +286,4 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
     </div>
   );
 };
+

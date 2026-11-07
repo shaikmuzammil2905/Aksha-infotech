@@ -66,3 +66,4 @@ export interface ContactMessage {
   message: string;
   submittedAt: string;
 }
+

@@ -369,3 +369,4 @@ export const HiringPage: React.FC<HiringPageProps> = ({ onOpenApply }) => {
     </div>
   );
 };
+

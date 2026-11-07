@@ -54,3 +54,4 @@ export const Counter: React.FC<CounterProps> = ({ end, duration = 1800, suffix =
     </span>
   );
 };
+
