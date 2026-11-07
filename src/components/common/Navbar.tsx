@@ -11,6 +11,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesDropdownOpen, setMobileServicesDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -26,6 +27,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
+    if (location.pathname.startsWith('/services')) {
+      setMobileServicesDropdownOpen(true);
+    }
   }, [location.pathname]);
 
   const navLinks = [
@@ -215,23 +219,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
                 >
                   About Us
                 </NavLink>
-                <NavLink
-                  to="/services"
-                  className={({ isActive }) => `block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                    isActive ? 'bg-brand-blue text-white' : 'text-slate-200 hover:bg-white/5'
-                  }`}
-                >
-                  Services
-                </NavLink>
+                {/* Services Dropdown Accordion */}
+                <div className="space-y-1">
+                  <button
+                    type="button"
+                    onClick={() => setMobileServicesDropdownOpen(!mobileServicesDropdownOpen)}
+                    className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                      location.pathname.startsWith('/services') 
+                        ? 'bg-brand-blue/30 text-white border border-brand-blue/40 font-bold' 
+                        : 'text-slate-200 hover:bg-white/5'
+                    }`}
+                  >
+                    <span>Services</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileServicesDropdownOpen ? 'rotate-180 text-brand-red' : 'text-slate-400'}`} />
+                  </button>
 
-                {/* Sub links */}
-                <div className="pl-4 py-1 space-y-1 border-l-2 border-slate-700 ml-3">
-                  <NavLink to="/services/kpo-jobs" className="block py-1 text-xs text-sky-200 hover:text-white">KPO Jobs</NavLink>
-                  <NavLink to="/services/bpo-jobs" className="block py-1 text-xs text-sky-200 hover:text-white">BPO Jobs</NavLink>
-                  <NavLink to="/services/healthcare-jobs" className="block py-1 text-xs text-sky-200 hover:text-white">Healthcare Jobs</NavLink>
-                  <NavLink to="/services/finance-jobs" className="block py-1 text-xs text-sky-200 hover:text-white">Finance Jobs</NavLink>
-                  <NavLink to="/services/non-it-jobs" className="block py-1 text-xs text-sky-200 hover:text-white">Non-IT Jobs</NavLink>
-                  <NavLink to="/services/it-software-jobs" className="block py-1 text-xs text-sky-200 hover:text-white">IT & Software Jobs</NavLink>
+                  {/* Sub links dropdown */}
+                  {mobileServicesDropdownOpen && (
+                    <div className="pl-3 py-1 space-y-1 border-l-2 border-brand-blue/60 ml-4 my-1 animate-fade-in">
+                      <NavLink
+                        to="/services"
+                        className={({ isActive }) => `block py-1.5 px-3 rounded-lg text-xs font-bold transition-colors ${
+                          isActive && location.pathname === '/services' ? 'bg-brand-blue text-white' : 'text-sky-300 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        All Services Overview &rarr;
+                      </NavLink>
+                      <NavLink to="/services/kpo-jobs" className={({ isActive }) => `block py-1 px-3 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'bg-brand-blue text-white' : 'text-sky-200 hover:text-white hover:bg-white/5'}`}>KPO Jobs</NavLink>
+                      <NavLink to="/services/bpo-jobs" className={({ isActive }) => `block py-1 px-3 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'bg-brand-blue text-white' : 'text-sky-200 hover:text-white hover:bg-white/5'}`}>BPO Jobs</NavLink>
+                      <NavLink to="/services/healthcare-jobs" className={({ isActive }) => `block py-1 px-3 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'bg-brand-blue text-white' : 'text-sky-200 hover:text-white hover:bg-white/5'}`}>Healthcare Jobs</NavLink>
+                      <NavLink to="/services/finance-jobs" className={({ isActive }) => `block py-1 px-3 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'bg-brand-blue text-white' : 'text-sky-200 hover:text-white hover:bg-white/5'}`}>Finance Jobs</NavLink>
+                      <NavLink to="/services/non-it-jobs" className={({ isActive }) => `block py-1 px-3 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'bg-brand-blue text-white' : 'text-sky-200 hover:text-white hover:bg-white/5'}`}>Non-IT Jobs</NavLink>
+                      <NavLink to="/services/it-software-jobs" className={({ isActive }) => `block py-1 px-3 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'bg-brand-blue text-white' : 'text-sky-200 hover:text-white hover:bg-white/5'}`}>IT &amp; Software Jobs</NavLink>
+                    </div>
+                  )}
                 </div>
 
                 <NavLink

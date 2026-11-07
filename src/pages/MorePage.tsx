@@ -197,3 +197,4 @@ export const MorePage: React.FC<MorePageProps> = ({ onOpenPostJob, onOpenPolicy 
     </div>
   );
 };
+

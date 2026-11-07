@@ -286,3 +286,4 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onOpenApply }) => {
     </div>
   );
 };
+
