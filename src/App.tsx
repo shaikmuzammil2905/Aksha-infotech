@@ -16,6 +16,9 @@ import { CategoryDetailPage } from './pages/CategoryDetailPage';
 import { HiringPage } from './pages/HiringPage';
 import { JobDetailPage } from './pages/JobDetailPage';
 import { ContactPage } from './pages/ContactPage';
+import { AlertsPage } from './pages/AlertsPage';
+import { LoginPage } from './pages/LoginPage';
+import { MorePage } from './pages/MorePage';
 import { Job } from './types/job';
 
 // Scroll to top helper on route change
@@ -84,6 +87,13 @@ export const App: React.FC = () => {
           <Route path="/hiring" element={<HiringPage onOpenApply={handleOpenApply} />} />
           <Route path="/jobs/:jobId" element={<JobDetailPage onOpenApply={handleOpenApply} />} />
 
+          {/* Dedicated Alerts, Login, and More Pages */}
+          <Route path="/alerts" element={<AlertsPage onOpenApply={handleOpenApply} />} />
+          <Route path="/notifications" element={<AlertsPage onOpenApply={handleOpenApply} />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<LoginPage />} />
+          <Route path="/more" element={<MorePage onOpenPostJob={() => setIsPostJobModalOpen(true)} onOpenPolicy={handleOpenPolicy} />} />
+
           {/* Contact */}
           <Route path="/contact" element={<ContactPage />} />
 
@@ -96,10 +106,7 @@ export const App: React.FC = () => {
       <Footer onOpenPolicy={handleOpenPolicy} />
 
       {/* Mobile Bottom Navigation Bar (Matches image copy.png) */}
-      <MobileBottomBar
-        onOpenAuth={handleOpenAuth}
-        onOpenPostJob={() => setIsPostJobModalOpen(true)}
-      />
+      <MobileBottomBar />
 
       {/* Floating Action Quick Contact Popup */}
       <FloatingContactPopup />

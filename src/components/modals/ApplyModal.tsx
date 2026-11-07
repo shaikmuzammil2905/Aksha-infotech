@@ -102,29 +102,30 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/70 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 py-6 bg-slate-900/75 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div 
-        className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden max-h-[92vh] flex flex-col animate-scale-in"
+        className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[88vh] flex flex-col my-auto animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-brand-dark via-brand-navy to-slate-900 px-6 py-5 text-white flex items-center justify-between border-b border-white/10">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-red/90 text-white text-xs font-semibold uppercase tracking-wider mb-1">
+        <div className="bg-gradient-to-r from-brand-dark via-brand-navy to-slate-900 px-5 py-4 sm:px-6 sm:py-5 text-white flex items-start justify-between gap-3 border-b border-white/10">
+          <div className="space-y-1 pr-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-red text-white text-[11px] font-bold uppercase tracking-wider mb-0.5">
               Apply Now
             </div>
-            <h3 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-              <span>{job.title}</span>
+            <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
+              {job.title}
             </h3>
-            <p className="text-xs text-sky-200 mt-1 flex items-center gap-3">
+            <p className="text-xs text-sky-200 flex flex-wrap items-center gap-2.5 pt-0.5">
               <span className="flex items-center gap-1"><Building2 className="w-3.5 h-3.5 text-sky-400" /> {job.company}</span>
+              <span className="hidden sm:inline">&bull;</span>
               <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-sky-400" /> {job.location}</span>
             </p>
           </div>
           <button
             onClick={onClose}
             disabled={isSubmitting}
-            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors flex-shrink-0"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -132,7 +133,7 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto">
+        <div className="p-4 sm:p-6 overflow-y-auto">
           {submitted ? (
             <div className="py-8 text-center space-y-4">
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-600 animate-bounce">
@@ -168,12 +169,13 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
                 </div>
               )}
 
-              <div className="bg-sky-50/70 p-3 rounded-xl border border-sky-100 flex items-center justify-between text-xs text-sky-900">
-                <span className="font-semibold flex items-center gap-1.5">
+              {/* Applying For Badge Box with proper mobile spacing */}
+              <div className="bg-sky-50/80 p-3 sm:p-3.5 rounded-2xl border border-sky-100 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 text-xs text-sky-900">
+                <span className="font-bold flex items-center gap-1.5 text-slate-700 flex-shrink-0">
                   <Briefcase className="w-4 h-4 text-brand-blue" />
                   Applying For:
                 </span>
-                <span className="font-bold text-brand-navy bg-white px-2.5 py-1 rounded-md border border-sky-200 shadow-sm">
+                <span className="font-extrabold text-brand-navy bg-white px-3 py-1.5 rounded-xl border border-sky-200 shadow-sm text-xs leading-normal">
                   {job.title}
                 </span>
               </div>

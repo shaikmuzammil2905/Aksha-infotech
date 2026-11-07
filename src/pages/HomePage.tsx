@@ -107,21 +107,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-sky-400/25 rounded-full blur-3xl animate-pulse-subtle pointer-events-none" />
         </div>
 
-        {/* Mobile Hero Animated Background Image (image copy 3.png) - Bright, Clear & Welcoming */}
+        {/* Mobile Hero Background Image (image copy 5.png) - Bright & Clear */}
         <div className="block lg:hidden absolute inset-0 z-0 overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ 
               backgroundImage: "url('/images/hero-mobile-bg.png')",
-              backgroundPosition: 'right -60px top',
+              backgroundPosition: 'right 0 top',
               backgroundSize: 'cover',
-              filter: 'brightness(1.2) contrast(1.05) saturate(1.15)',
-              opacity: 0.9,
+              filter: 'brightness(1.06) contrast(1.03)',
             }}
           />
-          {/* Subtle gradient to preserve text readability while keeping the woman brightly visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/95 via-[#06142e]/75 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#06142e]/50 to-[#06142e]" />
+          {/* Gentle gradient on left so text is readable while image copy 5.png is bright and crisp */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/90 via-[#06142e]/60 via-55% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/90 via-transparent to-transparent" />
         </div>
 
         {/* Hero Content Container */}
@@ -215,19 +214,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                     Founded in <strong className="text-white font-bold">2022</strong>, we are committed to bridging the talent gap and empowering your career journey.
                   </span>
                 </div>
-              </div>
-            </div>
-
-            {/* Right Column: Clean, open headline accent without any blocking dark card */}
-            <div className="hidden lg:flex lg:col-span-4 xl:col-span-4 justify-end items-center pr-6 select-none pointer-events-none">
-              <div className="text-right space-y-1.5 drop-shadow-lg">
-                <h3 className="text-2xl xl:text-3xl font-black text-white tracking-tight drop-shadow-md">
-                  Your Trusted Partner
-                </h3>
-                <p className="text-sm xl:text-base text-sky-200 font-bold drop-shadow">
-                  in Talent &amp; Growth
-                </p>
-                <div className="h-1 w-24 bg-brand-red ml-auto rounded-full shadow-lg" />
               </div>
             </div>
           </div>

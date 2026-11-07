@@ -88,26 +88,26 @@ export const PostJobModal: React.FC<PostJobModalProps> = ({ isOpen, onClose }) =
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/70 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 py-6 bg-slate-900/75 backdrop-blur-sm animate-fade-in overflow-y-auto">
       <div 
-        className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden max-h-[92vh] flex flex-col animate-scale-in"
+        className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden max-h-[88vh] flex flex-col my-auto animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-brand-dark via-brand-navy to-slate-900 px-6 py-5 text-white flex items-center justify-between border-b border-white/10">
+        <div className="bg-gradient-to-r from-brand-dark via-brand-navy to-slate-900 px-5 py-4 sm:px-6 sm:py-5 text-white flex items-start justify-between gap-3 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-brand-red/90 flex items-center justify-center text-white shadow-md">
+            <div className="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center shadow-md flex-shrink-0">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xl font-bold tracking-tight text-white">Post a Job / Hire Talent</h3>
-              <p className="text-xs text-sky-200 mt-0.5">Connect with pre-vetted candidates across KPO, BPO, IT, Finance & Healthcare</p>
+              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white">Post a Job / Hire Talent</h3>
+              <p className="text-xs text-sky-200 mt-0.5">Connect with pre-vetted candidates across KPO, BPO, IT, Finance &amp; Healthcare</p>
             </div>
           </div>
           <button
             onClick={onClose}
             disabled={isSubmitting}
-            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors flex-shrink-0"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -115,7 +115,7 @@ export const PostJobModal: React.FC<PostJobModalProps> = ({ isOpen, onClose }) =
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto">
+        <div className="p-4 sm:p-6 overflow-y-auto">
           {submitted ? (
             <div className="py-8 text-center space-y-4">
               <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-600 animate-bounce">
