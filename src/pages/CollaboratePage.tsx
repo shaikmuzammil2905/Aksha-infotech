@@ -5,6 +5,8 @@ import {
   ArrowRight, Briefcase, Award, TrendingUp, Layers, Check
 } from 'lucide-react';
 import { sendCorporateRequirement, CorporateRequirement } from '../services/emailService';
+import { TypingCounter } from '../components/common/TypingCounter';
+import { ScrollReveal } from '../components/common/ScrollReveal';
 
 export const CollaboratePage: React.FC = () => {
   const [formData, setFormData] = useState<CorporateRequirement>({
@@ -148,24 +150,34 @@ export const CollaboratePage: React.FC = () => {
       {/* ===================== METRICS BANNER ===================== */}
       <section className="bg-white border-b border-slate-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="p-3">
-              <div className="text-2xl sm:text-3xl font-black text-brand-blue">2000+</div>
-              <div className="text-xs text-slate-500 font-semibold mt-0.5">Successful Placements</div>
+          <ScrollReveal direction="up">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="p-3">
+                <div className="text-2xl sm:text-3xl font-black text-brand-blue">
+                  <TypingCounter end={2000} suffix="+" />
+                </div>
+                <div className="text-xs text-slate-500 font-semibold mt-0.5">Successful Placements</div>
+              </div>
+              <div className="p-3">
+                <div className="text-2xl sm:text-3xl font-black text-brand-red">
+                  <TypingCounter end={20} suffix="+" />
+                </div>
+                <div className="text-xs text-slate-500 font-semibold mt-0.5">Enterprise Corporate Clients</div>
+              </div>
+              <div className="p-3">
+                <div className="text-2xl sm:text-3xl font-black text-emerald-600">
+                  <TypingCounter end={98} suffix="%" />
+                </div>
+                <div className="text-xs text-slate-500 font-semibold mt-0.5">90-Day Candidate Retention</div>
+              </div>
+              <div className="p-3">
+                <div className="text-2xl sm:text-3xl font-black text-slate-900">
+                  <TypingCounter end={2022} duration={1400} />
+                </div>
+                <div className="text-xs text-slate-500 font-semibold mt-0.5">Operating Excellence in Hyderabad</div>
+              </div>
             </div>
-            <div className="p-3">
-              <div className="text-2xl sm:text-3xl font-black text-brand-red">20+</div>
-              <div className="text-xs text-slate-500 font-semibold mt-0.5">Enterprise Corporate Clients</div>
-            </div>
-            <div className="p-3">
-              <div className="text-2xl sm:text-3xl font-black text-emerald-600">98%</div>
-              <div className="text-xs text-slate-500 font-semibold mt-0.5">90-Day Candidate Retention</div>
-            </div>
-            <div className="p-3">
-              <div className="text-2xl sm:text-3xl font-black text-slate-900">2022</div>
-              <div className="text-xs text-slate-500 font-semibold mt-0.5">Operating Excellence in Hyderabad</div>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

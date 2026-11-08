@@ -7,6 +7,7 @@ import {
   TrendingUp, Sparkles, Building2, Clock, Globe2
 } from 'lucide-react';
 import { Counter } from '../components/common/Counter';
+import { TypingCounter } from '../components/common/TypingCounter';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { Job } from '../types/job';
 import { INITIAL_JOBS } from '../data/jobsData';
@@ -139,21 +140,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                 Connecting Job Seekers with Top Employers in <span className="text-white font-semibold">KPO, BPO, Healthcare, Finance, Non IT, IT &amp; Software Jobs</span>.
               </p>
 
-              {/* Search Box - Matches Reference Exactly */}
+              {/* Search Box - Translucent Glass on Mobile so Background Woman & Graphics Shine Through, Crisp on Desktop */}
               <div className="pt-2 sm:pt-3">
                 <form
                   onSubmit={handleSearchSubmit}
-                  className="bg-white rounded-2xl p-2 sm:p-2.5 shadow-2xl border border-white/30 flex flex-col sm:flex-row items-center gap-2"
+                  className="bg-slate-900/60 sm:bg-white backdrop-blur-md border border-white/20 sm:border-white/30 rounded-2xl p-2 sm:p-2.5 shadow-2xl flex flex-col sm:flex-row items-center gap-2"
                 >
                   {/* Job Search Input */}
                   <div className="flex items-center gap-2.5 flex-1 px-3 py-2 w-full">
-                    <Search className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <Search className="w-5 h-5 text-sky-300 sm:text-slate-400 flex-shrink-0" />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search for jobs (e.g. IT Developer, BPO, Healthcare...)"
-                      className="w-full text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none bg-transparent"
+                      className="w-full text-xs sm:text-sm text-white sm:text-slate-800 placeholder-slate-200 sm:placeholder-slate-400 focus:outline-none bg-transparent"
                     />
                   </div>
 
@@ -161,17 +162,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
 
                   {/* Location Selector */}
                   <div className="flex items-center gap-2 px-3 py-2 w-full sm:w-auto">
-                    <MapPin className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                    <MapPin className="w-4 h-4 text-sky-300 sm:text-slate-400 flex-shrink-0" />
                     <select
                       value={locationFilter}
                       onChange={(e) => setLocationFilter(e.target.value)}
-                      className="text-xs sm:text-sm text-slate-700 bg-transparent focus:outline-none font-medium cursor-pointer"
+                      className="text-xs sm:text-sm text-white sm:text-slate-700 bg-transparent focus:outline-none font-medium cursor-pointer"
                     >
-                      <option value="all" className="text-slate-800">All Locations</option>
-                      <option value="Hyderabad" className="text-slate-800">Hyderabad</option>
-                      <option value="Chennai" className="text-slate-800">Chennai</option>
-                      <option value="Bangalore" className="text-slate-800">Bangalore</option>
-                      <option value="Remote" className="text-slate-800">Work From Home / Remote</option>
+                      <option value="all" className="text-slate-800 bg-white">All Locations</option>
+                      <option value="Hyderabad" className="text-slate-800 bg-white">Hyderabad</option>
+                      <option value="Chennai" className="text-slate-800 bg-white">Chennai</option>
+                      <option value="Bangalore" className="text-slate-800 bg-white">Bangalore</option>
+                      <option value="Remote" className="text-slate-800 bg-white">Work From Home / Remote</option>
                     </select>
                   </div>
 
@@ -188,6 +189,79 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ===================== HERO STATS COUNTER BANNER ===================== */}
+      <section className="relative z-20 -mt-6 sm:-mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+        <ScrollReveal direction="up">
+          <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-xl border border-slate-200/90">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+              {/* Stat 1: Placing the candidate till now */}
+              <div className="flex items-center gap-3 p-2">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center flex-shrink-0 shadow-sm border border-blue-100">
+                  <UserCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-brand-blue tracking-tight">
+                    <TypingCounter end={2000} suffix="+" />
+                  </div>
+                  <div className="text-xs font-bold text-slate-800 mt-0.5 leading-snug">
+                    Placing Candidates Till Now
+                  </div>
+                  <div className="text-[11px] text-slate-400">Careers Launched</div>
+                </div>
+              </div>
+
+              {/* Stat 2: Clients up to */}
+              <div className="flex items-center gap-3 p-2 sm:pl-5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-rose-50 text-brand-red flex items-center justify-center flex-shrink-0 shadow-sm border border-rose-100">
+                  <Building2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-brand-red tracking-tight">
+                    <TypingCounter end={20} suffix="+" />
+                  </div>
+                  <div className="text-xs font-bold text-slate-800 mt-0.5 leading-snug">
+                    Clients Up To
+                  </div>
+                  <div className="text-[11px] text-slate-400">Corporate Partners</div>
+                </div>
+              </div>
+
+              {/* Stat 3: Visitors */}
+              <div className="flex items-center gap-3 p-2 sm:pl-5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 shadow-sm border border-purple-100">
+                  <Globe2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-purple-600 tracking-tight">
+                    <TypingCounter end={5000} suffix="+" />
+                  </div>
+                  <div className="text-xs font-bold text-slate-800 mt-0.5 leading-snug">
+                    Website Visitors
+                  </div>
+                  <div className="text-[11px] text-slate-400">Monthly Job Seekers</div>
+                </div>
+              </div>
+
+              {/* Stat 4: Success rate */}
+              <div className="flex items-center gap-3 p-2 sm:pl-5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center flex-shrink-0 shadow-sm border border-emerald-100">
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div>
+                  <div className="text-xl sm:text-2xl font-black text-emerald-600 tracking-tight">
+                    <TypingCounter end={98} suffix="%" />
+                  </div>
+                  <div className="text-xs font-bold text-slate-800 mt-0.5 leading-snug">
+                    Placement Success Rate
+                  </div>
+                  <div className="text-[11px] text-slate-400">Interview Clearance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* ===================== EXPLORE JOB CATEGORIES ===================== */}
@@ -477,28 +551,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                 <div className="grid grid-cols-2 gap-3 text-center">
                   <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
                     <div className="text-2xl font-black text-brand-blue">
-                      <Counter end={2000} suffix="+" />
+                      <TypingCounter end={2000} suffix="+" />
                     </div>
                     <div className="text-[11px] font-semibold text-slate-500 mt-1">Candidates Placed</div>
                   </div>
 
                   <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
                     <div className="text-2xl font-black text-brand-red">
-                      <Counter end={20} suffix="+" />
+                      <TypingCounter end={20} suffix="+" />
                     </div>
                     <div className="text-[11px] font-semibold text-slate-500 mt-1">Partner Clients</div>
                   </div>
 
                   <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
                     <div className="text-2xl font-black text-slate-900">
-                      <Counter end={5000} suffix="+" />
+                      <TypingCounter end={5000} suffix="+" />
                     </div>
                     <div className="text-[11px] font-semibold text-slate-500 mt-1">Website Visitors</div>
                   </div>
 
                   <div className="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
                     <div className="text-2xl font-black text-emerald-600">
-                      <Counter end={2} suffix="+" />
+                      <TypingCounter end={2} suffix="+" />
                     </div>
                     <div className="text-[11px] font-semibold text-slate-500 mt-1">Years Operating</div>
                   </div>
