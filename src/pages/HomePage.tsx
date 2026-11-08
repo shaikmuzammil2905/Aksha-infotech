@@ -124,10 +124,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
         </div>
 
         {/* Hero Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-10 lg:pb-14">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column: Heading, Subtext, Search Form */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-4">
+            <div className="lg:col-span-8 xl:col-span-8 space-y-5 sm:space-y-6">
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight animate-fade-up">
                 Your Career, <br />
@@ -140,7 +140,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
               </p>
 
               {/* Search Box - Matches Reference Exactly */}
-              <div className="pt-1">
+              <div className="pt-2 sm:pt-3">
                 <form
                   onSubmit={handleSearchSubmit}
                   className="bg-white rounded-2xl p-2 sm:p-2.5 shadow-2xl border border-white/30 flex flex-col sm:flex-row items-center gap-2"
