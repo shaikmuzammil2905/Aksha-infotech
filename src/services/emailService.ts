@@ -39,6 +39,39 @@ export const sendEmployerRequirement = async (data: EmployerRequirement): Promis
   };
 };
 
+export interface CorporateRequirement {
+  companyName: string;
+  contactPerson: string;
+  designation?: string;
+  email: string;
+  phone: string;
+  domain: string;
+  rolesNeeded: string;
+  headcount: string;
+  experienceLevel?: string;
+  workModel?: string;
+  timeline?: string;
+  description: string;
+}
+
+export const sendCorporateRequirement = async (data: CorporateRequirement): Promise<{ success: boolean; message: string }> => {
+  await new Promise(resolve => setTimeout(resolve, 800));
+
+  const collabKey = 'aksha_corporate_collaborations';
+  const existing = JSON.parse(localStorage.getItem(collabKey) || '[]');
+  existing.unshift({
+    ...data,
+    recipientEmail: COMPANY_RECIPIENT,
+    id: `collab_${Date.now()}`
+  });
+  localStorage.setItem(collabKey, JSON.stringify(existing));
+
+  return {
+    success: true,
+    message: `Corporate requirement from ${data.companyName} submitted successfully! Our Head of Corporate Partnerships will contact you within 24 hours.`
+  };
+};
+
 export const sendContactMessage = async (data: ContactMessage): Promise<{ success: boolean; message: string }> => {
   await new Promise(resolve => setTimeout(resolve, 800));
 

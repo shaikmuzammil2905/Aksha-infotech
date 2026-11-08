@@ -124,20 +124,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
         </div>
 
         {/* Hero Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 lg:pt-14 lg:pb-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-10 lg:pb-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column: Heading, Subtext, Search Form */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-5">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-xs text-sky-200 shadow-sm animate-fade-in">
-                <Sparkles className="w-3.5 h-3.5 text-brand-red animate-spin" style={{ animationDuration: '6s' }} />
-                <span className="font-medium tracking-wide">Premier Recruitment &amp; Placement Partner</span>
-              </div>
-
+            <div className="lg:col-span-8 xl:col-span-8 space-y-4">
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight animate-fade-up">
                 Your Career, <br />
-                Our <span className="text-brand-red drop-shadow-sm underline decoration-brand-red/50 decoration-wavy decoration-2">Mission</span>
+                Our <span className="text-brand-red drop-shadow-sm">Mission</span>
               </h1>
 
               {/* Supporting Text */}
@@ -145,24 +139,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                 Connecting Job Seekers with Top Employers in <span className="text-white font-semibold">KPO, BPO, Healthcare, Finance, Non IT, IT &amp; Software Jobs</span>.
               </p>
 
-              {/* Value Propositions */}
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-1 text-xs text-slate-100 font-medium">
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 shadow-sm">
-                  <div className="w-2 h-2 rounded-full bg-brand-red animate-ping" />
-                  <span>Find the Right Job</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 shadow-sm">
-                  <TrendingUp className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Grow Your Career</span>
-                </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 shadow-sm">
-                  <Award className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Build a Better Future</span>
-                </div>
-              </div>
-
-              {/* Search Box - Matches Image Exactly */}
-              <div className="pt-2">
+              {/* Search Box - Matches Reference Exactly */}
+              <div className="pt-1">
                 <form
                   onSubmit={handleSearchSubmit}
                   className="bg-white rounded-2xl p-2 sm:p-2.5 shadow-2xl border border-white/30 flex flex-col sm:flex-row items-center gap-2"
@@ -206,14 +184,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </form>
-
-                {/* Subtitle / Notification pill below search box */}
-                <div className="mt-3.5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 text-xs text-slate-200">
-                  <Calendar className="w-4 h-4 text-brand-red flex-shrink-0" />
-                  <span>
-                    Founded in <strong className="text-white font-bold">2022</strong>, we are committed to bridging the talent gap and empowering your career journey.
-                  </span>
-                </div>
               </div>
             </div>
           </div>
@@ -221,7 +191,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
       </section>
 
       {/* ===================== EXPLORE JOB CATEGORIES ===================== */}
-      <section className="py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
@@ -278,7 +248,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
       </section>
 
       {/* ===================== FEATURED JOBS SECTION ===================== */}
-      <section className="py-8 lg:py-12 bg-slate-100/70 border-y border-slate-200">
+      <section className="py-6 sm:py-8 bg-slate-100/70 border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex items-center justify-between mb-6">
@@ -379,7 +349,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
       </section>
 
       {/* ===================== MIDDLE 4-CARDS SECTION (FROM REFERENCE IMAGE) ===================== */}
-      <section className="py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Card 1: Empowering Talent. Building Futures. */}
           <ScrollReveal delay={0}>
@@ -544,10 +514,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
       </section>
 
       {/* ===================== OUR SERVICES SECTION ===================== */}
-      <section className="py-12 lg:py-16 bg-white border-t border-slate-200">
+      <section className="py-6 sm:py-8 lg:py-10 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-3">
                 <span className="w-2 h-7 bg-brand-blue rounded-full" />
                 <div>
@@ -594,7 +564,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
       </section>
 
       {/* ===================== CTA BANNER ===================== */}
-      <section className="py-8 lg:py-12 bg-slate-50">
+      <section className="py-6 sm:py-8 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
             <div className="relative rounded-3xl bg-gradient-to-r from-[#06142e] via-[#092247] to-[#0c3166] p-6 sm:p-10 text-white overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">

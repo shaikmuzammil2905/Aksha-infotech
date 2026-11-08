@@ -16,6 +16,7 @@ import { CategoryDetailPage } from './pages/CategoryDetailPage';
 import { HiringPage } from './pages/HiringPage';
 import { JobDetailPage } from './pages/JobDetailPage';
 import { ContactPage } from './pages/ContactPage';
+import { CollaboratePage } from './pages/CollaboratePage';
 import { AlertsPage } from './pages/AlertsPage';
 import { LoginPage } from './pages/LoginPage';
 import { MorePage } from './pages/MorePage';
@@ -93,6 +94,10 @@ export const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<LoginPage />} />
           <Route path="/more" element={<MorePage onOpenPostJob={() => setIsPostJobModalOpen(true)} onOpenPolicy={handleOpenPolicy} />} />
+
+          {/* Collaborate With Us Route */}
+          <Route path="/collaborate" element={<CollaboratePage />} />
+          <Route path="/collaborate-with-us" element={<CollaboratePage />} />
 
           {/* Contact */}
           <Route path="/contact" element={<ContactPage />} />

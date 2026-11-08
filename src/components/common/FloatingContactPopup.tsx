@@ -21,23 +21,21 @@ export const FloatingContactPopup: React.FC = () => {
 
   return (
     <div ref={popupRef} className="fixed bottom-20 md:bottom-6 right-5 z-40">
-      {/* Floating Action Trigger Button */}
+      {/* Floating WhatsApp Action Trigger Button - Icon Only */}
       {!isOpen && (
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-2 px-3.5 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-white/60 animate-bounce"
-          style={{ animationDuration: '3s' }}
-          aria-label="Open Quick Contact Helpdesk"
+          className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white ring-4 ring-[#25D366]/20"
+          aria-label="WhatsApp Quick Contact"
         >
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-          </span>
-          <MessageCircle className="w-5 h-5 text-white" />
-          <span className="text-xs font-bold tracking-wide pr-1 hidden sm:inline">
-            Need Job Assistance?
-          </span>
+          {/* Official WhatsApp Favicon Icon */}
+          <svg className="w-8 h-8 fill-white transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+            <path d="M12.031 2C6.496 2 2 6.496 2 12.031c0 1.769.458 3.498 1.332 5.02L2 22l5.088-1.309a10.005 10.005 0 004.943 1.34h.005c5.534 0 10.03-4.496 10.03-10.031S17.565 2 12.031 2zm0 18.356h-.004a8.318 8.318 0 01-4.24-1.161l-.304-.18-3.155.811.838-3.076-.197-.314a8.297 8.297 0 01-1.272-4.382c0-4.597 3.742-8.339 8.339-8.339 2.228 0 4.322.868 5.897 2.444a8.293 8.293 0 012.442 5.895c0 4.598-3.741 8.339-8.339 8.339z" />
+          </svg>
+          {/* Subtle online status indicator */}
+          <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-emerald-300 border-2 border-white rounded-full animate-ping pointer-events-none" />
+          <span className="absolute top-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full pointer-events-none" />
         </button>
       )}
 

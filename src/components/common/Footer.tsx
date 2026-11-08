@@ -82,6 +82,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPolicy }) => {
                 <Link to="/hiring" className="hover:text-white hover:underline transition-colors">Hiring / Jobs</Link>
               </li>
               <li>
+                <Link to="/collaborate" className="hover:text-white hover:underline transition-colors text-sky-300 font-semibold">Collaborate With Us</Link>
+              </li>
+              <li>
                 <Link to="/contact" className="hover:text-white hover:underline transition-colors">Contact Us</Link>
               </li>
             </ul>

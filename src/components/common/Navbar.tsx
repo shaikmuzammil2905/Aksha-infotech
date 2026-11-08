@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { User, Menu, X, ChevronDown, PlusCircle, PhoneCall, MessageCircle, Briefcase } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Logo } from './Logo';
 
 interface NavbarProps {
@@ -50,6 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
       ]
     },
     { name: 'Hiring', path: '/hiring' },
+    { name: 'Collaborate With Us', path: '/collaborate' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
@@ -132,39 +133,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
               })}
             </nav>
 
-            {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <NavLink
-                to="/login"
-                className={({ isActive }) => `inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full transition-colors ${
-                  isActive ? 'bg-white/20 text-white font-bold' : 'text-slate-200 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                  <User className="w-3.5 h-3.5" />
-                </div>
-                <span>Login / Register</span>
-              </NavLink>
-
-              <button
-                type="button"
-                onClick={onOpenPostJob}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold rounded-full shadow-md transition-all duration-150 active:scale-95"
-              >
-                <PlusCircle className="w-3.5 h-3.5" />
-                <span>Post a Job</span>
-              </button>
-            </div>
-
             {/* Mobile Actions: Hamburger Toggle */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                type="button"
-                onClick={onOpenPostJob}
-                className="px-3 py-1.5 bg-brand-red text-white text-[11px] font-bold rounded-full shadow-sm"
-              >
-                Post Job
-              </button>
+            <div className="flex items-center lg:hidden">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -264,20 +234,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
                   Hiring / Jobs
                 </NavLink>
                 <NavLink
-                  to="/alerts"
+                  to="/collaborate"
                   className={({ isActive }) => `block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                     isActive ? 'bg-brand-blue text-white' : 'text-slate-200 hover:bg-white/5'
                   }`}
                 >
-                  Alerts &amp; Updates (2)
-                </NavLink>
-                <NavLink
-                  to="/more"
-                  className={({ isActive }) => `block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                    isActive ? 'bg-brand-blue text-white' : 'text-slate-200 hover:bg-white/5'
-                  }`}
-                >
-                  Directory &amp; More
+                  Collaborate With Us
                 </NavLink>
                 <NavLink
                   to="/contact"
@@ -287,49 +249,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
                 >
                   Contact Us
                 </NavLink>
-              </div>
-            </div>
-
-            {/* Drawer Bottom Actions */}
-            <div className="pt-4 border-t border-slate-800 space-y-3">
-              <NavLink
-                to="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold flex items-center justify-center gap-2"
-              >
-                <User className="w-4 h-4 text-sky-400" />
-                <span>Candidate / Employer Login</span>
-              </NavLink>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenPostJob();
-                }}
-                className="w-full py-2.5 px-4 rounded-xl bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold flex items-center justify-center gap-2 shadow"
-              >
-                <Briefcase className="w-4 h-4" />
-                <span>Post a Job Requirement</span>
-              </button>
-
-              <div className="grid grid-cols-2 gap-2 pt-2">
-                <a
-                  href="tel:+919701310634"
-                  className="py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center gap-1.5"
-                >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  <span>Call Recruiter</span>
-                </a>
-                <a
-                  href="https://wa.me/919701310634?text=Hello%20AKSHA%20Infotech,%20I%20would%20like%20to%20know%20more%20about%20your%20job%20opportunities."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-2 px-3 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold flex items-center justify-center gap-1.5"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp</span>
-                </a>
               </div>
             </div>
           </div>
