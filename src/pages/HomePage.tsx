@@ -4,7 +4,7 @@ import {
   Search, MapPin, ArrowRight, CheckCircle, Headphones, 
   HeartPulse, Coins, Users, Code2, Briefcase, FileText, 
   UserCheck, Award, GraduationCap, Handshake, Calendar,
-  TrendingUp, Sparkles, Building2, Clock, Globe2
+  TrendingUp, Sparkles, Building2, Clock, Globe2, CheckCircle2, ShieldCheck
 } from 'lucide-react';
 import { Counter } from '../components/common/Counter';
 import { TypingCounter } from '../components/common/TypingCounter';
@@ -258,6 +258,288 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                   </div>
                   <div className="text-[11px] text-slate-400">Interview Clearance</div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ===================== CORE SOLUTIONS SECTION ===================== */}
+      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 gap-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-bold border border-brand-blue/20 mb-2">
+                <Sparkles className="w-3.5 h-3.5 text-brand-blue" />
+                <span>What We Deliver</span>
+              </div>
+              <h2 className="text-xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                Core Solutions
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+                Comprehensive talent acquisition and career acceleration programs tailored for candidates and corporate hiring partners.
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/services')}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-navy group transition-colors flex-shrink-0"
+            >
+              <span>View All Services</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </ScrollReveal>
+
+        {/* 4 Core Solution Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {/* Solution 1 */}
+          <ScrollReveal delay={0}>
+            <div 
+              onClick={() => navigate('/hiring')}
+              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center border border-blue-100 group-hover:scale-105 transition-transform">
+                  <UserCheck className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-blue-50/70 px-2.5 py-0.5 rounded-full">
+                    Job Placement
+                  </span>
+                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-brand-blue transition-colors">
+                    Direct Candidate Placement
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Connecting qualified candidates directly with hiring managers across IT, BPO, KPO, Healthcare, Finance, and Non-IT sectors with zero candidate fees.
+                </p>
+                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>Active client drives in Hyderabad &amp; Pan-India</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>Fast interview feedback &amp; offer support</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-blue group-hover:translate-x-1 transition-transform">
+                <span>Explore Open Roles</span>
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Solution 2 */}
+          <ScrollReveal delay={100}>
+            <div 
+              onClick={() => navigate('/collaborate')}
+              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-rose-50 text-brand-red flex items-center justify-center border border-rose-100 group-hover:scale-105 transition-transform">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red bg-rose-50/70 px-2.5 py-0.5 rounded-full">
+                    Enterprise Staffing
+                  </span>
+                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-brand-red transition-colors">
+                    Employer Recruitment Support
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  High-speed corporate staffing pipelines delivering pre-screened, interview-ready profiles within 24 to 48 hours for contract, permanent, or bulk hiring.
+                </p>
+                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>24–48 hours profile turnaround</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>Rigorous background &amp; skill screening</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-red group-hover:translate-x-1 transition-transform">
+                <span>Collaborate With Us</span>
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Solution 3 */}
+          <ScrollReveal delay={200}>
+            <div 
+              onClick={() => navigate('/services')}
+              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 group-hover:scale-105 transition-transform">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50/70 px-2.5 py-0.5 rounded-full">
+                    Profile Enhancement
+                  </span>
+                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-emerald-600 transition-colors">
+                    Resume Building &amp; ATS Audit
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Restructure your CV to pass automated Applicant Tracking Systems with domain-targeted keywords, quantifiable accomplishments, and modern executive styling.
+                </p>
+                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>ATS keyword optimization by industry</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>3x increase in recruiter callbacks</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
+                <span>View Resume Support</span>
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* Solution 4 */}
+          <ScrollReveal delay={300}>
+            <div 
+              onClick={() => navigate('/services')}
+              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100 group-hover:scale-105 transition-transform">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50/70 px-2.5 py-0.5 rounded-full">
+                    Interview Coaching
+                  </span>
+                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-purple-600 transition-colors">
+                    Skill Training &amp; Mock Drills
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  One-on-one realistic mock interviews, STAR method behavioral coaching, voice &amp; accent preparation, and constructive debriefs that dramatically boost selection rates.
+                </p>
+                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>Realistic HR &amp; technical simulations</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                    <span>Personalized feedback &amp; salary negotiation</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600 group-hover:translate-x-1 transition-transform">
+                <span>View Interview Drills</span>
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ===================== WHY US SECTION ===================== */}
+      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal>
+          <div className="relative rounded-3xl bg-gradient-to-br from-[#06142e] via-[#092247] to-[#0c3166] text-white p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl border border-white/10">
+            {/* Ambient Background Glow */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-blue/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-red/15 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 max-w-3xl mb-8 space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-sky-200 border border-white/15">
+                <ShieldCheck className="w-4 h-4 text-brand-red" />
+                <span>The AKSHA Advantage</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                Why Us? Built On Trust, Speed &amp; Candidate Success
+              </h2>
+              <p className="text-xs sm:text-sm text-sky-100/90 leading-relaxed">
+                Operating since 2022 from Hyderabad, AKSHA Infotech Pvt Ltd has emerged as a reliable bridge between job seekers and corporate organizations across multiple sectors.
+              </p>
+            </div>
+
+            {/* 4 Value Pillars */}
+            <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {/* Pillar 1 */}
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:bg-white/15 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-brand-blue/60 text-white flex items-center justify-center font-black text-lg mb-3 shadow">
+                  01
+                </div>
+                <h3 className="text-base font-bold text-white">2000+ Placed Candidates</h3>
+                <p className="text-xs text-sky-100/80 mt-1.5 leading-relaxed">
+                  Demonstrated track record of shaping verified careers in KPO, BPO, Healthcare, Finance, and IT across Hyderabad and Pan-India.
+                </p>
+              </div>
+
+              {/* Pillar 2 */}
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:bg-white/15 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-brand-red/80 text-white flex items-center justify-center font-black text-lg mb-3 shadow">
+                  02
+                </div>
+                <h3 className="text-base font-bold text-white">20+ Corporate Clients</h3>
+                <p className="text-xs text-sky-100/80 mt-1.5 leading-relaxed">
+                  Strong direct relationships with pre-vetted employers, contact centers, analytics firms, and technology companies.
+                </p>
+              </div>
+
+              {/* Pillar 3 */}
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:bg-white/15 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/80 text-white flex items-center justify-center font-black text-lg mb-3 shadow">
+                  03
+                </div>
+                <h3 className="text-base font-bold text-white">24–48 Hr Fast Turnaround</h3>
+                <p className="text-xs text-sky-100/80 mt-1.5 leading-relaxed">
+                  Accelerated screening, prompt interview scheduling, and continuous candidate feedback with zero lengthy waiting periods.
+                </p>
+              </div>
+
+              {/* Pillar 4 */}
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:bg-white/15 transition-all">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/80 text-white flex items-center justify-center font-black text-lg mb-3 shadow">
+                  04
+                </div>
+                <h3 className="text-base font-bold text-white">100% Free For Candidates</h3>
+                <p className="text-xs text-sky-100/80 mt-1.5 leading-relaxed">
+                  We never charge candidates for job placements, profile submissions, or interview arrangements. Honest, transparent recruitment.
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Action Footer */}
+            <div className="relative z-10 mt-8 pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-xs text-sky-200 text-center sm:text-left">
+                Ready to take the next leap in your career or scale your corporate workforce?
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => navigate('/hiring')}
+                  className="px-5 py-2.5 bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold rounded-xl shadow-lg transition-all"
+                >
+                  Find Open Jobs
+                </button>
+                <button
+                  onClick={() => navigate('/collaborate')}
+                  className="px-5 py-2.5 bg-white text-brand-dark hover:bg-sky-50 text-xs font-bold rounded-xl shadow-lg transition-all"
+                >
+                  Collaborate With Us
+                </button>
               </div>
             </div>
           </div>

@@ -67,3 +67,4 @@ export const TypingCounter: React.FC<TypingCounterProps> = ({
     </span>
   );
 };
+
