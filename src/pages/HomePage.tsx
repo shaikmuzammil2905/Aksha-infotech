@@ -75,12 +75,42 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
   ];
 
   const servicesList = [
-    { title: 'Job Placement Support', icon: Briefcase, desc: 'Connecting candidates directly with hiring corporate partners.' },
-    { title: 'Resume Building', icon: FileText, desc: 'Professional ATS-friendly resume enhancement and formatting.' },
-    { title: 'Career Counseling', icon: UserCheck, desc: 'One-on-one personalized career pathway and industry guidance.' },
-    { title: 'Skill Development', icon: Award, desc: 'Targeted skill gap training to increase interview employability.' },
-    { title: 'Interview Preparation', icon: GraduationCap, desc: 'Mock HR interviews and technical screening drills.' },
-    { title: 'Talent Acquisition for Employers', icon: Handshake, desc: 'Fast turnaround candidate sourcing for corporate clients.' },
+    {
+      title: 'Job Placement Support',
+      icon: Briefcase,
+      image: '/images/solution-placement.jpg',
+      desc: 'Connecting candidates directly with hiring corporate partners.'
+    },
+    {
+      title: 'Resume Building',
+      icon: FileText,
+      image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=900&q=80',
+      desc: 'Professional ATS-friendly resume enhancement and formatting.'
+    },
+    {
+      title: 'Career Counseling',
+      icon: UserCheck,
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80',
+      desc: 'One-on-one personalized career pathway and industry guidance.'
+    },
+    {
+      title: 'Skill Development',
+      icon: Award,
+      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80',
+      desc: 'Targeted skill gap training to increase interview employability.'
+    },
+    {
+      title: 'Interview Preparation',
+      icon: GraduationCap,
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80',
+      desc: 'Mock HR interviews and technical screening drills.'
+    },
+    {
+      title: 'Talent Acquisition for Employers',
+      icon: Handshake,
+      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80',
+      desc: 'Fast turnaround candidate sourcing for corporate clients.'
+    },
   ];
 
   const featuredJobs = INITIAL_JOBS.slice(0, 4);
@@ -968,17 +998,30 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                 <ScrollReveal key={idx} delay={idx * 70}>
                   <div
                     onClick={() => navigate('/services')}
-                    className="group bg-slate-50 hover:bg-white rounded-2xl p-4 border border-slate-200/80 hover:border-brand-blue hover:shadow-lg transition-all duration-200 cursor-pointer flex flex-col justify-between text-center h-full"
+                    className="group bg-slate-50 hover:bg-white rounded-2xl overflow-hidden border border-slate-200/80 hover:border-brand-blue hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between text-center h-full"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-sky-100/70 text-brand-blue group-hover:bg-brand-blue group-hover:text-white flex items-center justify-center mx-auto transition-colors mb-3">
-                      <Icon className="w-6 h-6" />
+                    <div>
+                      <div className="relative h-24 sm:h-28 w-full overflow-hidden bg-slate-100">
+                        <img
+                          src={srv.image}
+                          alt={srv.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/80 via-[#06142e]/20 to-transparent" />
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-xl bg-white/95 text-brand-blue group-hover:bg-brand-blue group-hover:text-white flex items-center justify-center shadow transition-colors">
+                          <Icon className="w-4 h-4" />
+                        </div>
+                      </div>
+                      <div className="p-3 sm:p-4">
+                        <h3 className="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-brand-blue transition-colors line-clamp-2">
+                          {srv.title}
+                        </h3>
+                        <p className="text-[11px] text-slate-500 mt-1.5 line-clamp-2 leading-tight hidden sm:block">
+                          {srv.desc}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-brand-blue transition-colors line-clamp-2">
-                      {srv.title}
-                    </h3>
-                    <p className="text-[11px] text-slate-500 mt-2 line-clamp-2 leading-tight hidden sm:block">
-                      {srv.desc}
-                    </p>
                   </div>
                 </ScrollReveal>
               );
