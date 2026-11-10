@@ -125,24 +125,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-sky-400/25 rounded-full blur-3xl animate-pulse-subtle pointer-events-none" />
         </div>
 
-        {/* Mobile Hero Background Image (hero-mobile-bg.png) - Lady Face Clearly Visible */}
+        {/* Mobile Hero Background Image (hero-mobile-bg.png) - Full Portrait Clearly Visible */}
         <div className="block lg:hidden absolute inset-0 z-0 overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ 
               backgroundImage: "url('/images/hero-mobile-bg.png')",
-              backgroundPosition: 'right top',
+              backgroundPosition: 'center top',
               backgroundSize: 'cover',
               filter: 'brightness(1.08) contrast(1.04)',
             }}
           />
-          {/* Soft left-side gradient only over text so the lady's face on right is 100% clear */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/85 via-[#06142e]/30 via-45% to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/65 via-transparent to-transparent" />
+          {/* Subtle left gradient only behind left-side text so the entire lady portrait on right/bottom shines cleanly */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/80 via-[#06142e]/25 via-45% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/35 via-transparent to-transparent" />
         </div>
 
-        {/* Hero Content Container - Compact Top/Bottom on Mobile so Lady Face Sits Cleanly Above Stats Card */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-20 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24 min-h-[310px] sm:min-h-0 flex items-center">
+        {/* Hero Content Container - Full Portrait Framing on Mobile */}
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-8 pb-16 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 min-h-[520px] sm:min-h-[580px] lg:min-h-0 flex items-start lg:items-center">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
             {/* Left Column: Heading, Subtext, All Services CTA */}
             <div className="lg:col-span-8 xl:col-span-8 space-y-3 sm:space-y-6">
@@ -153,7 +153,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
               </h1>
 
               {/* Supporting Text */}
-              <p className="text-xs sm:text-base text-slate-100 max-w-[58%] sm:max-w-2xl leading-relaxed font-normal drop-shadow">
+              <p className="text-xs sm:text-base text-slate-100 max-w-[55%] sm:max-w-2xl leading-relaxed font-normal drop-shadow">
                 Connecting Job Seekers with Top Employers in <span className="text-white font-semibold">KPO, BPO, Healthcare, Finance, Non IT, IT &amp; Software Jobs</span>.
               </p>
 
@@ -174,7 +174,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== HERO STATS COUNTER BANNER ===================== */}
-      <section className="relative z-20 -mt-6 sm:-mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+      <section className="relative z-20 mt-4 sm:mt-6 lg:-mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
         <ScrollReveal direction="up">
           <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-xl border border-slate-200/90">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
