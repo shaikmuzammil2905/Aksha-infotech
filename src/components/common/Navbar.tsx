@@ -49,7 +49,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
         { name: 'IT & Software Jobs', path: '/services/it-software-jobs' },
       ]
     },
-    { name: 'Hiring', path: '/hiring' },
     { name: 'Collaborate With Us', path: '/collaborate' },
     { name: 'Contact Us', path: '/contact' },
   ];
@@ -225,14 +224,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
                   )}
                 </div>
 
-                <NavLink
-                  to="/hiring"
-                  className={({ isActive }) => `block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                    isActive ? 'bg-brand-blue text-white' : 'text-slate-200 hover:bg-white/5'
-                  }`}
-                >
-                  Hiring / Jobs
-                </NavLink>
                 <NavLink
                   to="/collaborate"
                   className={({ isActive }) => `block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${

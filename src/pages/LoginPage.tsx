@@ -30,7 +30,7 @@ export const LoginPage: React.FC = () => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => {
-      navigate('/hiring');
+      navigate('/services');
     }, 2000);
   };
 
@@ -97,10 +97,10 @@ export const LoginPage: React.FC = () => {
                 </p>
                 <div className="pt-2">
                   <button
-                    onClick={() => navigate('/hiring')}
+                    onClick={() => navigate('/services')}
                     className="px-6 py-2.5 bg-brand-navy text-white text-xs font-bold rounded-xl"
                   >
-                    Go to Jobs Now
+                    Explore Services Now
                   </button>
                 </div>
               </div>

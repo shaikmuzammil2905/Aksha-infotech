@@ -56,10 +56,10 @@ export const AboutPage: React.FC = () => {
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
-                onClick={() => navigate('/hiring')}
+                onClick={() => navigate('/contact?apply=true#apply-form')}
                 className="px-6 py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
               >
-                <span>Explore Open Positions</span>
+                <span>Apply Now</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button

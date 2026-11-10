@@ -1,29 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { 
-  Building2, MapPin, Phone, Mail, MessageCircle, Send, 
-  CheckCircle2, AlertCircle, Loader2, Clock, Globe 
+  MapPin, Phone, Mail, MessageCircle, Send, 
+  CheckCircle2, AlertCircle, Loader2, Clock, Upload, Briefcase 
 } from 'lucide-react';
 import { sendContactMessage } from '../services/emailService';
 
+const WHATSAPP_NUMBER = '919701310634';
+
 export const ContactPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const initialCategory = searchParams.get('category') || 'IT & Software Jobs';
+
   const [formData, setFormData] = useState({
     fullName: '',
     mobile: '',
     email: '',
-    subject: '',
+    jobCategory: initialCategory,
+    qualification: '',
+    experience: 'Fresher / 0 Years',
+    preferredLocation: 'Hyderabad',
     message: ''
   });
 
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat) {
+      setFormData(prev => ({ ...prev, jobCategory: cat }));
+    }
+    if (searchParams.get('apply') === 'true' || location.hash === '#apply-form' || cat) {
+      setTimeout(() => {
+        const el = document.getElementById('apply-form');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
+    }
+  }, [searchParams, location.hash]);
+
+  const buildWhatsAppLink = (data: typeof formData, file: File | null) => {
+    const lines = [
+      '*AKSHA Infotech - Job Application & Inquiry*',
+      '',
+      `*Full Name:* ${data.fullName}`,
+      `*Mobile Number:* ${data.mobile}`,
+      `*Email:* ${data.email}`,
+      `*Preferred Job Category:* ${data.jobCategory}`,
+      `*Qualification:* ${data.qualification}`,
+      `*Experience Level:* ${data.experience}`,
+      `*Preferred Location:* ${data.preferredLocation}`,
+      `*Resume:* ${file ? `${file.name} (Attached in WhatsApp)` : 'Will attach resume in chat'}`,
+      data.message.trim() ? `*Skills / Message:* ${data.message.trim()}` : ''
+    ].filter(Boolean);
+
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
 
-    if (!formData.fullName.trim() || !formData.mobile.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setErrorMessage('Please fill in all mandatory fields.');
+    if (!formData.fullName.trim() || !formData.mobile.trim() || !formData.email.trim() || !formData.qualification.trim()) {
+      setErrorMessage('Please fill in all mandatory candidate details (Name, Mobile, Email, Qualification).');
       return;
     }
 
@@ -33,29 +78,39 @@ export const ContactPage: React.FC = () => {
       return;
     }
 
-    if (formData.message.trim().length < 10) {
-      setErrorMessage('Please provide a message of at least 10 characters.');
-      return;
-    }
-
     setErrorMessage('');
     setIsSubmitting(true);
 
     try {
       await sendContactMessage({
-        ...formData,
+        fullName: formData.fullName,
+        mobile: formData.mobile,
+        email: formData.email,
+        subject: `Job Application: ${formData.jobCategory} (${formData.qualification})`,
+        message: `Category: ${formData.jobCategory} | Qualification: ${formData.qualification} | Experience: ${formData.experience} | Location: ${formData.preferredLocation} | Resume: ${resumeFile?.name || 'Pending'} | Notes: ${formData.message}`,
         submittedAt: new Date().toISOString()
       });
+
+      const waLink = buildWhatsAppLink(formData, resumeFile);
+      setWhatsappUrl(waLink);
       setSubmitted(true);
+
+      // Directly forward candidate details to the related WhatsApp contact
+      window.open(waLink, '_blank', 'noopener,noreferrer');
+
       setFormData({
         fullName: '',
         mobile: '',
         email: '',
-        subject: '',
+        jobCategory: 'IT & Software Jobs',
+        qualification: '',
+        experience: 'Fresher / 0 Years',
+        preferredLocation: 'Hyderabad',
         message: ''
       });
+      setResumeFile(null);
     } catch {
-      setErrorMessage('Failed to send message. Please try again or reach out directly by phone.');
+      setErrorMessage('Failed to submit details. Please try again or reach out directly via WhatsApp.');
     } finally {
       setIsSubmitting(false);
     }
@@ -179,32 +234,49 @@ export const ContactPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact Form Column (7 cols) */}
-          <div className="lg:col-span-7">
+          {/* Application & Contact Form Column (7 cols) */}
+          <div id="apply-form" className="lg:col-span-7 scroll-mt-24">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-slate-900">Send Us an Inquiry</h3>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-brand-blue text-xs font-bold border border-sky-100 mb-2">
+                  <Briefcase className="w-3.5 h-3.5" />
+                  <span>Direct Job Application &amp; Inquiry Form</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">Apply for Job &amp; Send Resume</h3>
                 <p className="text-xs text-slate-500 mt-1">
-                  Fill out the form below. Messages are routed directly to <span className="font-semibold text-brand-blue">Mnkumar@akshainfotech.com</span>.
+                  Submit your basic details and resume below. Your application goes directly to our placement WhatsApp desk (<strong className="text-emerald-600">+91 9701310634</strong>) and email (<span className="font-semibold text-brand-blue">Mnkumar@akshainfotech.com</span>).
                 </p>
               </div>
 
               {submitted ? (
-                <div className="py-12 text-center space-y-4">
+                <div className="py-10 text-center space-y-4">
                   <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-600 animate-bounce">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h4 className="text-2xl font-bold text-slate-900">Thank you!</h4>
+                  <h4 className="text-2xl font-bold text-slate-900">Application Ready &amp; Forwarded!</h4>
                   <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                    Your message has been submitted successfully to <strong className="text-brand-navy">Mnkumar@akshainfotech.com</strong>. Our placement coordinator will get back to you shortly.
+                    Your details have been submitted to <strong className="text-brand-navy">Mnkumar@akshainfotech.com</strong> and prepared for WhatsApp. Please click below if WhatsApp did not open automatically to send your resume file.
                   </p>
-                  <button
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="px-6 py-2.5 bg-brand-navy hover:bg-brand-blue text-white text-xs font-bold rounded-xl shadow transition-colors"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    {whatsappUrl && (
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-6 py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        <span>Open in WhatsApp &amp; Attach Resume</span>
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-bold rounded-xl transition-colors"
+                    >
+                      Submit Another Application
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -232,7 +304,7 @@ export const ContactPage: React.FC = () => {
 
                     <div>
                       <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        Mobile Number <span className="text-red-500">*</span>
+                        Mobile / WhatsApp Number <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="tel"
@@ -260,28 +332,114 @@ export const ContactPage: React.FC = () => {
 
                     <div>
                       <label className="block text-xs font-semibold text-slate-700 mb-1">
-                        Subject / Inquiry Type
+                        Preferred Job Sector <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        value={formData.jobCategory}
+                        onChange={(e) => setFormData({ ...formData, jobCategory: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800 bg-white cursor-pointer"
+                      >
+                        <option value="IT & Software Jobs">IT &amp; Software Jobs</option>
+                        <option value="BPO Jobs">BPO Jobs (Voice / Non-Voice)</option>
+                        <option value="KPO Jobs">KPO Jobs (Research &amp; Analytics)</option>
+                        <option value="Healthcare Jobs">Healthcare Jobs (Medical Coding)</option>
+                        <option value="Finance Jobs">Finance &amp; Accounting Jobs</option>
+                        <option value="Non-IT Jobs">Non-IT, HR &amp; Operations Jobs</option>
+                        <option value="Any Suitable Role">General / Any Suitable Role</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1">
+                        Highest Qualification <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        placeholder="e.g. Job Placement / Corporate Hiring"
+                        required
+                        value={formData.qualification}
+                        onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
+                        placeholder="e.g. B.Tech, MBA, B.Com, Any Graduate"
                         className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800"
                       />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Experience
+                        </label>
+                        <select
+                          value={formData.experience}
+                          onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800 bg-white cursor-pointer"
+                        >
+                          <option value="Fresher / 0 Years">Fresher (0 Yrs)</option>
+                          <option value="1–2 Years">1–2 Years</option>
+                          <option value="3–5 Years">3–5 Years</option>
+                          <option value="5+ Years">5+ Years</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Preferred City
+                        </label>
+                        <select
+                          value={formData.preferredLocation}
+                          onChange={(e) => setFormData({ ...formData, preferredLocation: e.target.value })}
+                          className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800 bg-white cursor-pointer"
+                        >
+                          <option value="Hyderabad">Hyderabad</option>
+                          <option value="Chennai">Chennai</option>
+                          <option value="Bangalore">Bangalore</option>
+                          <option value="Work From Home / Remote">Remote / WFH</option>
+                          <option value="Pan-India">Pan-India</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Resume Upload Box */}
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      Upload Resume (PDF, DOC, DOCX)
+                    </label>
+                    <div className="relative border-2 border-dashed border-slate-300 hover:border-brand-blue rounded-2xl p-4 text-center cursor-pointer transition-colors bg-slate-50/70">
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            setResumeFile(e.target.files[0]);
+                          }
+                        }}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      />
+                      <div className="flex flex-col items-center justify-center gap-1">
+                        <Upload className="w-5 h-5 text-brand-blue" />
+                        {resumeFile ? (
+                          <span className="text-xs font-bold text-emerald-600 truncate max-w-xs">
+                            Selected: {resumeFile.name} (attach in WhatsApp chat after submit)
+                          </span>
+                        ) : (
+                          <>
+                            <span className="text-xs font-semibold text-slate-700">Click or drag &amp; drop your resume</span>
+                            <span className="text-[11px] text-slate-400">PDF, DOC, DOCX supported</span>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Message / Requirement Details <span className="text-red-500">*</span>
+                      Key Skills / Additional Message (Optional)
                     </label>
                     <textarea
-                      rows={5}
-                      required
+                      rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Please provide details about your qualification, job interest, or hiring requirement..."
+                      placeholder="Mention your key skills, preferred role, notice period, or questions..."
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue text-sm text-slate-800 resize-none"
                     />
                   </div>
@@ -289,17 +447,17 @@ export const ContactPage: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto px-8 py-3 bg-brand-navy hover:bg-brand-blue text-white text-xs sm:text-sm font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full sm:w-auto px-8 py-3.5 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending Message...</span>
+                        <span>Sending to WhatsApp...</span>
                       </>
                     ) : (
                       <>
-                        <span>Send Message</span>
                         <Send className="w-4 h-4" />
+                        <span>Apply &amp; Send to WhatsApp</span>
                       </>
                     )}
                   </button>

@@ -130,10 +130,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenPostJob }) => 
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
-                onClick={() => navigate('/hiring')}
+                onClick={() => navigate('/contact?apply=true#apply-form')}
                 className="px-5 py-2.5 sm:px-6 sm:py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
               >
-                <span>Find Your Job</span>
+                <span>Apply Now</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
@@ -226,10 +226,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenPostJob }) => 
                       </button>
                     ) : (
                       <button
-                        onClick={() => navigate('/hiring')}
+                        onClick={() => navigate('/contact?apply=true#apply-form')}
                         className="text-xs font-bold text-brand-blue hover:text-brand-navy flex items-center gap-1.5 transition-colors"
                       >
-                        <span>View Matching Roles</span>
+                        <span>Apply Now</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     )}

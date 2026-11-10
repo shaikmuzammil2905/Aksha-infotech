@@ -98,15 +98,8 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onOpenApply }) => {
   const filteredAlerts = alerts.filter(a => filterType === 'all' || a.type === filterType);
   const unreadCount = alerts.filter(a => a.unread).length;
 
-  const handleAction = (alert: AlertItem) => {
-    if (alert.jobId) {
-      const job = INITIAL_JOBS.find(j => j.id === alert.jobId);
-      if (job) {
-        onOpenApply(job);
-        return;
-      }
-    }
-    navigate('/hiring');
+  const handleAction = (_alert: AlertItem) => {
+    navigate('/contact?apply=true#apply-form');
   };
 
   return (
@@ -217,10 +210,10 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ onOpenApply }) => {
                 You are all caught up! New recruitment updates and drive notifications will appear here.
               </p>
               <button
-                onClick={() => navigate('/hiring')}
+                onClick={() => navigate('/contact?apply=true#apply-form')}
                 className="mt-2 px-5 py-2.5 bg-brand-navy hover:bg-brand-blue text-white text-xs font-bold rounded-xl transition-colors"
               >
-                Explore Active Openings
+                Apply Now
               </button>
             </div>
           ) : (

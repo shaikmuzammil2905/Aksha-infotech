@@ -1,33 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Search, MapPin, ArrowRight, CheckCircle, Headphones, 
+  ArrowRight, CheckCircle, Headphones, 
   HeartPulse, Coins, Users, Code2, Briefcase, FileText, 
   UserCheck, Award, GraduationCap, Handshake, Calendar,
-  Sparkles, Building2, Clock, Globe2, CheckCircle2, ShieldCheck
+  Sparkles, Building2, Globe2, CheckCircle2, ShieldCheck
 } from 'lucide-react';
 import { TypingCounter } from '../components/common/TypingCounter';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { Job } from '../types/job';
-import { INITIAL_JOBS, getCategoryImage, getJobImage } from '../data/jobsData';
+import { getCategoryImage } from '../data/jobsData';
 
 interface HomePageProps {
   onOpenApply: (job: Job) => void;
   onOpenAuth: (tab?: 'login' | 'register') => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) => {
+export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [locationFilter, setLocationFilter] = useState('');
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const params = new URLSearchParams();
-    if (searchQuery.trim()) params.append('q', searchQuery.trim());
-    if (locationFilter && locationFilter !== 'all') params.append('loc', locationFilter);
-    navigate(`/hiring?${params.toString()}`);
-  };
 
   const jobCategories = [
     {
@@ -113,8 +103,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
     },
   ];
 
-  const featuredJobs = INITIAL_JOBS.slice(0, 4);
-
   return (
     <div className="min-h-screen bg-slate-50">
       {/* ===================== HERO SECTION ===================== */}
@@ -137,27 +125,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-sky-400/25 rounded-full blur-3xl animate-pulse-subtle pointer-events-none" />
         </div>
 
-        {/* Mobile Hero Background Image (image copy 5.png) - Bright & Clear */}
+        {/* Mobile Hero Background Image (image copy 5.png) - Bright & Girl Clearly Visible */}
         <div className="block lg:hidden absolute inset-0 z-0 overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ 
               backgroundImage: "url('/images/hero-mobile-bg.png')",
-              backgroundPosition: 'right 0 top',
+              backgroundPosition: 'right bottom',
               backgroundSize: 'cover',
-              filter: 'brightness(1.06) contrast(1.03)',
+              filter: 'brightness(1.08) contrast(1.04)',
             }}
           />
-          {/* Gentle gradient on left so text is readable while image copy 5.png is bright and crisp */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/90 via-[#06142e]/60 via-55% to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/90 via-transparent to-transparent" />
+          {/* Light left-side directional gradient so heading is readable while the girl on right/bottom is clearly visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/85 via-[#06142e]/35 via-45% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/60 via-transparent to-[#06142e]/40" />
         </div>
 
-        {/* Hero Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24">
+        {/* Hero Content Container - Positioned Higher on Mobile so the Girl is Clearly Visible */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-24 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Column: Heading, Subtext, Search Form */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-5 sm:space-y-6">
+            {/* Left Column: Heading, Subtext, Apply for Job CTA */}
+            <div className="lg:col-span-8 xl:col-span-8 space-y-3.5 sm:space-y-6">
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight animate-fade-up">
                 Your Career, <br />
@@ -165,55 +153,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
               </h1>
 
               {/* Supporting Text */}
-              <p className="text-xs sm:text-base text-slate-100 max-w-2xl leading-relaxed font-normal drop-shadow">
+              <p className="text-xs sm:text-base text-slate-100 max-w-[260px] sm:max-w-2xl leading-relaxed font-normal drop-shadow">
                 Connecting Job Seekers with Top Employers in <span className="text-white font-semibold">KPO, BPO, Healthcare, Finance, Non IT, IT &amp; Software Jobs</span>.
               </p>
 
-              {/* Search Box - Translucent Glass on Mobile so Background Woman & Graphics Shine Through, Crisp on Desktop */}
-              <div className="pt-2 sm:pt-3">
-                <form
-                  onSubmit={handleSearchSubmit}
-                  className="bg-slate-900/60 sm:bg-white backdrop-blur-md border border-white/20 sm:border-white/30 rounded-2xl p-2 sm:p-2.5 shadow-2xl flex flex-col sm:flex-row items-center gap-2"
+              {/* Apply for Job CTA (Opens Contact & Application Form) */}
+              <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => navigate('/contact?apply=true#apply-form')}
+                  className="px-6 py-3 sm:px-8 sm:py-3.5 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-2xl transition-all duration-150 inline-flex items-center gap-2 active:scale-95 border border-white/20"
                 >
-                  {/* Job Search Input */}
-                  <div className="flex items-center gap-2.5 flex-1 px-3 py-2 w-full">
-                    <Search className="w-5 h-5 text-sky-300 sm:text-slate-400 flex-shrink-0" />
-                    <input
-                      type="text"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search for jobs (e.g. IT Developer, BPO, Healthcare...)"
-                      className="w-full text-xs sm:text-sm text-white sm:text-slate-800 placeholder-slate-200 sm:placeholder-slate-400 focus:outline-none bg-transparent"
-                    />
-                  </div>
-
-                  <div className="hidden sm:block w-[1px] h-8 bg-slate-200" />
-
-                  {/* Location Selector */}
-                  <div className="flex items-center gap-2 px-3 py-2 w-full sm:w-auto">
-                    <MapPin className="w-4 h-4 text-sky-300 sm:text-slate-400 flex-shrink-0" />
-                    <select
-                      value={locationFilter}
-                      onChange={(e) => setLocationFilter(e.target.value)}
-                      className="text-xs sm:text-sm text-white sm:text-slate-700 bg-transparent focus:outline-none font-medium cursor-pointer"
-                    >
-                      <option value="all" className="text-slate-800 bg-white">All Locations</option>
-                      <option value="Hyderabad" className="text-slate-800 bg-white">Hyderabad</option>
-                      <option value="Chennai" className="text-slate-800 bg-white">Chennai</option>
-                      <option value="Bangalore" className="text-slate-800 bg-white">Bangalore</option>
-                      <option value="Remote" className="text-slate-800 bg-white">Work From Home / Remote</option>
-                    </select>
-                  </div>
-
-                  {/* Search CTA */}
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto px-6 py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all duration-150 flex items-center justify-center gap-2 active:scale-95 flex-shrink-0"
-                  >
-                    <span>Search Jobs</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </form>
+                  <span>Apply for Job</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </div>
@@ -324,7 +277,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           {/* Solution 1 */}
           <ScrollReveal delay={0}>
             <div 
-              onClick={() => navigate('/hiring')}
+              onClick={() => navigate('/contact?apply=true#apply-form')}
               className="group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
             >
               <div>
@@ -367,7 +320,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
               </div>
 
               <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-blue group-hover:translate-x-1 transition-transform">
-                <span>Explore Open Roles</span>
+                <span>Apply Now</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
             </div>
@@ -606,10 +559,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <button
-                  onClick={() => navigate('/hiring')}
+                  onClick={() => navigate('/contact?apply=true#apply-form')}
                   className="px-5 py-2.5 bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold rounded-xl shadow-lg transition-all"
                 >
-                  Find Open Jobs
+                  Apply Now
                 </button>
                 <button
                   onClick={() => navigate('/collaborate')}
@@ -633,13 +586,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
                 Explore Job Categories
               </h2>
             </div>
-            <button
-              onClick={() => navigate('/hiring')}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-navy group transition-colors"
-            >
-              <span>View All Categories</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
           </div>
         </ScrollReveal>
 
@@ -691,114 +637,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
               </ScrollReveal>
             );
           })}
-        </div>
-      </section>
-
-      {/* ===================== FEATURED JOBS SECTION ===================== */}
-      <section className="py-6 sm:py-8 bg-slate-100/70 border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-7 bg-brand-red rounded-full" />
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                    Featured Job Openings
-                  </h2>
-                  <p className="text-xs text-slate-500">Verified openings currently hiring in Hyderabad and Pan-India</p>
-                </div>
-              </div>
-              <button
-                onClick={() => navigate('/hiring')}
-                className="inline-flex items-center gap-1 text-xs font-bold text-brand-red hover:underline"
-              >
-                <span>View All</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-            {featuredJobs.map((job, idx) => (
-              <ScrollReveal key={job.id} delay={idx * 100}>
-                <div
-                  className="group bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full"
-                >
-                  <div>
-                    {/* Related Job Role Image Banner */}
-                    <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-slate-100 cursor-pointer" onClick={() => navigate(`/jobs/${job.id}`)}>
-                      <img
-                        src={getJobImage(job)}
-                        alt={job.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/85 via-[#06142e]/25 to-transparent" />
-                      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/95 text-brand-navy text-[10px] font-bold uppercase tracking-wider shadow">
-                        {job.employmentType}
-                      </span>
-                      <div className="absolute bottom-3 left-4 right-4 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-white/95 border border-white flex items-center justify-center text-brand-blue flex-shrink-0 shadow">
-                          <Building2 className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-sm sm:text-base text-white drop-shadow leading-tight group-hover:text-sky-200 transition-colors">
-                            {job.title}
-                          </h3>
-                          <p className="text-[11px] text-sky-200 flex items-center gap-1.5 mt-0.5">
-                            <span>{job.category}</span>
-                            <span>•</span>
-                            <span className="flex items-center gap-1">
-                              <MapPin className="w-3 h-3" />
-                              {job.location}
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-4 sm:p-5">
-                      <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                        {job.description}
-                      </p>
-
-                      <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-3 text-xs text-slate-500 font-medium pt-3 border-t border-slate-100">
-                        <span className="flex items-center gap-1">
-                          <Briefcase className="w-3.5 h-3.5 text-slate-400" />
-                          Exp: {job.experience}
-                        </span>
-                        <span>•</span>
-                        <span className="font-bold text-brand-navy">
-                          {job.salary}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                          <Clock className="w-3 h-3" />
-                          {job.postedDate}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
-                    <button
-                      onClick={() => navigate(`/jobs/${job.id}`)}
-                      className="text-xs font-semibold text-slate-600 hover:text-brand-blue"
-                    >
-                      View Details &rarr;
-                    </button>
-                    <button
-                      onClick={() => onOpenApply(job)}
-                      className="px-4 py-2 bg-brand-navy hover:bg-brand-blue text-white text-xs font-bold rounded-xl transition-colors shadow-sm flex items-center gap-1.5"
-                    >
-                      <span>Apply Now</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -1054,7 +892,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
 
               <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
                 <button
-                  onClick={() => navigate('/hiring')}
+                  onClick={() => navigate('/contact?apply=true#apply-form')}
                   className="px-6 py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all duration-150 flex items-center gap-2 active:scale-95"
                 >
                   <span>Apply Now</span>

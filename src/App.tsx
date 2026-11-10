@@ -13,7 +13,6 @@ import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { CategoryDetailPage } from './pages/CategoryDetailPage';
-import { HiringPage } from './pages/HiringPage';
 import { JobDetailPage } from './pages/JobDetailPage';
 import { ContactPage } from './pages/ContactPage';
 import { CollaboratePage } from './pages/CollaboratePage';
@@ -84,8 +83,8 @@ export const App: React.FC = () => {
           <Route path="/services/it-software-jobs" element={<CategoryDetailPage onOpenApply={handleOpenApply} categorySlug="it-software-jobs" />} />
           <Route path="/services/:slug" element={<CategoryDetailPage onOpenApply={handleOpenApply} />} />
 
-          {/* Hiring & Job Detail */}
-          <Route path="/hiring" element={<HiringPage onOpenApply={handleOpenApply} />} />
+          {/* Removed /hiring route — redirect to /services */}
+          <Route path="/hiring" element={<ServicesPage onOpenPostJob={() => setIsPostJobModalOpen(true)} />} />
           <Route path="/jobs/:jobId" element={<JobDetailPage onOpenApply={handleOpenApply} />} />
 
           {/* Dedicated Alerts, Login, and More Pages */}
@@ -103,7 +102,7 @@ export const App: React.FC = () => {
           <Route path="/contact" element={<ContactPage />} />
 
           {/* Fallback */}
-          <Route path="*" element={<HiringPage onOpenApply={handleOpenApply} />} />
+          <Route path="*" element={<HomePage onOpenApply={handleOpenApply} onOpenAuth={handleOpenAuth} />} />
         </Routes>
       </main>
 

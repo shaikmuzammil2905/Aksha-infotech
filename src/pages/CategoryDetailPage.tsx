@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
-  Briefcase, CheckCircle2, ArrowRight, Building2, MapPin, 
-  DollarSign, Clock, ChevronRight, Award, ShieldCheck, PhoneCall 
+  Briefcase, CheckCircle2, ArrowRight,
+  ChevronRight, Award, PhoneCall 
 } from 'lucide-react';
 import { Job, JobCategory } from '../types/job';
-import { getJobsByCategory, getCategoryImage } from '../data/jobsData';
+import { getCategoryImage } from '../data/jobsData';
 
 interface CategoryDetailPageProps {
   onOpenApply: (job: Job) => void;
@@ -196,15 +196,12 @@ const CATEGORY_MAP: Record<string, CategoryMeta> = {
   }
 };
 
-export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ onOpenApply, categorySlug: propSlug }) => {
+export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ categorySlug: propSlug }) => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
   const activeSlug = propSlug || slug || 'it-software-jobs';
   const categoryData = CATEGORY_MAP[activeSlug] || CATEGORY_MAP['it-software-jobs'];
-
-  // Fetch active jobs for this specific category
-  const matchingJobs = getJobsByCategory(activeSlug);
 
   return (
     <div className="min-h-screen bg-slate-50 py-8 lg:py-12">
@@ -242,10 +239,17 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ onOpenAp
 
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
-                onClick={() => navigate(`/hiring?cat=${activeSlug}`)}
+                onClick={() => navigate('/services')}
                 className="px-6 py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
               >
-                <span>View {matchingJobs.length} Active Openings</span>
+                <span>View Jobs</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => navigate(`/contact?category=${encodeURIComponent(categoryData.categoryName)}&apply=true#apply-form`)}
+                className="px-5 py-3 bg-white text-brand-navy hover:bg-sky-50 text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
+              >
+                <span>Apply Now</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a
@@ -354,85 +358,6 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ onOpenAp
               </a>
             </div>
           </div>
-        </div>
-
-        {/* Active Openings Section */}
-        <div className="space-y-4 pt-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900">
-              Current Openings in {categoryData.categoryName} ({matchingJobs.length})
-            </h2>
-            <button
-              onClick={() => navigate(`/hiring?cat=${activeSlug}`)}
-              className="text-xs font-bold text-brand-blue hover:underline"
-            >
-              Filter &amp; Search All
-            </button>
-          </div>
-
-          {matchingJobs.length === 0 ? (
-            <div className="bg-white rounded-3xl p-8 text-center border border-slate-200 text-slate-500 text-xs">
-              There are no active openings in this category right now. Please check back soon or submit your profile.
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {matchingJobs.map((job) => (
-                <div
-                  key={job.id}
-                  className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <h3 
-                          onClick={() => navigate(`/jobs/${job.id}`)}
-                          className="font-bold text-slate-900 hover:text-brand-blue cursor-pointer transition-colors"
-                        >
-                          {job.title}
-                        </h3>
-                        <p className="text-xs text-slate-500 flex items-center gap-2 mt-1">
-                          <span>{job.company}</span>
-                          <span>•</span>
-                          <span className="flex items-center gap-1">
-                            <MapPin className="w-3 h-3 text-slate-400" />
-                            {job.location}
-                          </span>
-                        </p>
-                      </div>
-                      <span className="px-2 py-0.5 rounded-full bg-sky-50 text-brand-blue text-[10px] font-bold">
-                        {job.employmentType}
-                      </span>
-                    </div>
-
-                    <p className="text-xs text-slate-600 mt-2 line-clamp-2 leading-relaxed">
-                      {job.description}
-                    </p>
-
-                    <div className="flex items-center gap-3 mt-3 pt-2 border-t border-slate-100 text-xs text-slate-500">
-                      <span>Exp: {job.experience}</span>
-                      <span>•</span>
-                      <span className="font-bold text-brand-navy">{job.salary}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between gap-2 mt-4 pt-3 border-t border-slate-100">
-                    <button
-                      onClick={() => navigate(`/jobs/${job.id}`)}
-                      className="text-xs font-semibold text-slate-600 hover:text-brand-blue"
-                    >
-                      View Details &rarr;
-                    </button>
-                    <button
-                      onClick={() => onOpenApply(job)}
-                      className="px-4 py-2 bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold rounded-xl transition-colors"
-                    >
-                      Apply Now
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

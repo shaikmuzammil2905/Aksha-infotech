@@ -23,6 +23,7 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   // Prevent background scrolling when open
@@ -93,7 +94,25 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
       };
 
       await sendJobApplication(payload);
+
+      const waLines = [
+        '*AKSHA Infotech - Job Application*',
+        '',
+        `*Applying For:* ${job.title}`,
+        `*Full Name:* ${formData.fullName}`,
+        `*Mobile Number:* ${formData.phone}`,
+        `*Email:* ${formData.email}`,
+        `*Qualification:* ${formData.qualification}`,
+        `*Experience:* ${formData.experience || 'Not specified'}`,
+        `*Location:* ${formData.location || 'Not specified'}`,
+        `*Resume:* ${resumeFile ? `${resumeFile.name} (Attach in WhatsApp)` : 'Will attach resume in chat'}`,
+        formData.coverMessage ? `*Notes:* ${formData.coverMessage}` : ''
+      ].filter(Boolean);
+
+      const waLink = `https://wa.me/919701310634?text=${encodeURIComponent(waLines.join('\n'))}`;
+      setWhatsappUrl(waLink);
       setSubmitted(true);
+      window.open(waLink, '_blank', 'noopener,noreferrer');
     } catch {
       setErrorMessage('Application submission failed. Please try again or contact us directly.');
     } finally {
@@ -150,7 +169,17 @@ export const ApplyModal: React.FC<ApplyModalProps> = ({ isOpen, onClose, job }) 
                 <div><strong>Qualification:</strong> {formData.qualification}</div>
               </div>
               <p className="text-xs text-slate-400">Our HR specialist will review your profile and reach out within 24 to 48 business hours.</p>
-              <div className="pt-4">
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+                {whatsappUrl && (
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm rounded-xl transition-colors shadow-md"
+                  >
+                    Open WhatsApp &amp; Attach Resume
+                  </a>
+                )}
                 <button
                   type="button"
                   onClick={onClose}

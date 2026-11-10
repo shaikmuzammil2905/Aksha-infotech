@@ -20,7 +20,7 @@ export const MorePage: React.FC<MorePageProps> = ({ onOpenPostJob, onOpenPolicy 
     { name: 'Home', path: '/', icon: Home, desc: 'Return to landing page' },
     { name: 'About AKSHA Infotech', path: '/about', icon: Info, desc: 'Established 2022, Vision, Mission & Values' },
     { name: 'Services & Programs', path: '/services', icon: Award, desc: 'Placement support, training & counseling' },
-    { name: 'Hiring / Job Openings', path: '/hiring', icon: Briefcase, desc: 'Search & filter active jobs' },
+    { name: 'Apply for Job / Contact', path: '/contact?apply=true#apply-form', icon: Briefcase, desc: 'Submit your resume & details' },
     { name: 'Alerts & Notifications', path: '/alerts', icon: Bell, desc: 'Live job updates and recruitment drives' },
     { name: 'Candidate & Employer Login', path: '/login', icon: User, desc: 'Access your career profile' },
     { name: 'Contact & Location', path: '/contact', icon: MapPin, desc: 'Nacharam, Hyderabad office & map' },

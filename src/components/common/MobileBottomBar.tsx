@@ -18,15 +18,15 @@ export const MobileBottomBar: React.FC = () => {
           <span className="truncate">Home</span>
         </NavLink>
 
-        {/* Jobs */}
+        {/* Services */}
         <NavLink
-          to="/hiring"
+          to="/services"
           className={({ isActive }) => `flex flex-col items-center justify-center gap-0.5 text-[11px] font-semibold py-1 px-1 rounded-xl transition-colors ${
             isActive ? 'text-brand-blue font-bold' : 'text-slate-500 hover:text-slate-800'
           }`}
         >
           <Briefcase className="w-5 h-5 flex-shrink-0" />
-          <span className="truncate">Jobs</span>
+          <span className="truncate">Services</span>
         </NavLink>
 
         {/* About Us */}

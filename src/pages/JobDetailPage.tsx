@@ -28,10 +28,10 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
             The job opening you are looking for has expired or the link is invalid. Please explore our active listings.
           </p>
           <button
-            onClick={() => navigate('/hiring')}
+            onClick={() => navigate('/services')}
             className="px-6 py-2.5 bg-brand-navy hover:bg-brand-blue text-white text-xs font-bold rounded-xl transition-colors shadow"
           >
-            Back to All Jobs
+            Explore Services
           </button>
         </div>
       </div>
@@ -59,7 +59,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
           <div className="flex items-center gap-1.5">
             <span className="cursor-pointer hover:text-slate-800" onClick={() => navigate('/')}>Home</span>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="cursor-pointer hover:text-slate-800" onClick={() => navigate('/hiring')}>Jobs</span>
+            <span className="cursor-pointer hover:text-slate-800" onClick={() => navigate('/services')}>Services</span>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-brand-blue font-bold truncate max-w-[200px]">{job.title}</span>
           </div>
@@ -127,7 +127,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
                 <Share2 className="w-5 h-5" />
               </button>
               <button
-                onClick={() => onOpenApply(job)}
+                onClick={() => navigate(`/contact?category=${encodeURIComponent(job.category)}&apply=true#apply-form`)}
                 className="px-8 py-3.5 bg-brand-red hover:bg-brand-redHover text-white text-sm font-black rounded-xl shadow-lg transition-all duration-150 flex items-center gap-2 active:scale-95"
               >
                 <span>Apply Now</span>
@@ -252,7 +252,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
               </div>
 
               <button
-                onClick={() => onOpenApply(job)}
+                onClick={() => navigate(`/contact?category=${encodeURIComponent(job.category)}&apply=true#apply-form`)}
                 className="w-full py-3.5 bg-brand-red hover:bg-brand-redHover text-white text-xs font-extrabold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 active:scale-95"
               >
                 <span>Apply Now for this Job</span>
