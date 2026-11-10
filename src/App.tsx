@@ -8,6 +8,7 @@ import { PostJobModal } from './components/modals/PostJobModal';
 import { AuthModal } from './components/modals/AuthModal';
 import { PolicyModal, PolicyType } from './components/modals/PolicyModal';
 import { FloatingContactPopup } from './components/common/FloatingContactPopup';
+import { SplashScreen } from './components/common/SplashScreen';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -59,6 +60,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-red selection:text-white">
+      <SplashScreen />
       <ScrollToTop />
 
       {/* Main Header */}

@@ -58,8 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenPostJob, onOpenAuth }) => 
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-200 ${
           scrolled 
-            ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg border-b border-white/10 py-2.5' 
-            : 'bg-brand-dark border-b border-slate-800 py-3'
+            ? 'bg-brand-dark/95 backdrop-blur-md shadow-lg border-b border-white/10 py-1.5' 
+            : 'bg-brand-dark border-b border-slate-800 py-2'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
