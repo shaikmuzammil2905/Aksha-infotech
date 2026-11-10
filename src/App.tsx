@@ -68,7 +68,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Router Content */}
-      <main className="flex-1 min-h-screen pb-24 md:pb-0 overflow-y-auto relative">
+      <main className="flex-1 relative">
         <Routes>
           <Route path="/" element={<HomePage onOpenApply={handleOpenApply} onOpenAuth={handleOpenAuth} />} />
           <Route path="/about" element={<AboutPage />} />

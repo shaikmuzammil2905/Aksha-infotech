@@ -239,15 +239,8 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ category
 
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
-                onClick={() => navigate('/services')}
-                className="px-6 py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
-              >
-                <span>View Jobs</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
                 onClick={() => navigate(`/contact?category=${encodeURIComponent(categoryData.categoryName)}&apply=true#apply-form`)}
-                className="px-5 py-3 bg-white text-brand-navy hover:bg-sky-50 text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#2563eb] hover:from-[#0369a1] hover:to-[#1d4ed8] text-white text-xs sm:text-sm font-bold rounded-xl shadow-[0_4px_16px_rgba(14,165,233,0.45)] border border-sky-300/30 transition-all flex items-center gap-2 active:scale-95"
               >
                 <span>Apply Now</span>
                 <ArrowRight className="w-4 h-4" />

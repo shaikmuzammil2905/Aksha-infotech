@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPolicy }) => {
   return (
     <footer className="bg-brand-dark text-slate-300 border-t border-slate-800 text-xs">
       {/* Upper Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
           {/* Col 1: About & Info */}
           <div className="lg:col-span-2 space-y-4">
@@ -207,7 +207,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPolicy }) => {
       </div>
 
       {/* Bottom Footer */}
-      <div className="border-t border-slate-800 bg-slate-950/60 py-5">
+      <div className="border-t border-slate-800 bg-slate-950/60 pt-5 pb-20 md:pb-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-400">
           <div>
             &copy; 2022 &ndash; 2026 AKSHA Infotech Pvt Ltd. All Rights Reserved.

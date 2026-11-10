@@ -125,27 +125,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-sky-400/25 rounded-full blur-3xl animate-pulse-subtle pointer-events-none" />
         </div>
 
-        {/* Mobile Hero Background Image (image copy 5.png) - Bright & Girl Clearly Visible */}
+        {/* Mobile Hero Background Image (hero-mobile-bg.png) - Lady Face Clearly Visible */}
         <div className="block lg:hidden absolute inset-0 z-0 overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ 
               backgroundImage: "url('/images/hero-mobile-bg.png')",
-              backgroundPosition: 'right bottom',
+              backgroundPosition: 'right top',
               backgroundSize: 'cover',
               filter: 'brightness(1.08) contrast(1.04)',
             }}
           />
-          {/* Light left-side directional gradient so heading is readable while the girl on right/bottom is clearly visible */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/85 via-[#06142e]/35 via-45% to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/60 via-transparent to-[#06142e]/40" />
+          {/* Soft left-side gradient only over text so the lady's face on right is 100% clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/85 via-[#06142e]/30 via-45% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/65 via-transparent to-transparent" />
         </div>
 
-        {/* Hero Content Container - Positioned Higher on Mobile so the Girl is Clearly Visible */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-24 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Column: Heading, Subtext, Apply for Job CTA */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-3.5 sm:space-y-6">
+        {/* Hero Content Container - Compact Top/Bottom on Mobile so Lady Face Sits Cleanly Above Stats Card */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-20 sm:pt-10 sm:pb-16 lg:pt-16 lg:pb-24 min-h-[310px] sm:min-h-0 flex items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
+            {/* Left Column: Heading, Subtext, All Services CTA */}
+            <div className="lg:col-span-8 xl:col-span-8 space-y-3 sm:space-y-6">
               {/* Main Heading */}
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight animate-fade-up">
                 Your Career, <br />
@@ -153,18 +153,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
               </h1>
 
               {/* Supporting Text */}
-              <p className="text-xs sm:text-base text-slate-100 max-w-[260px] sm:max-w-2xl leading-relaxed font-normal drop-shadow">
+              <p className="text-xs sm:text-base text-slate-100 max-w-[58%] sm:max-w-2xl leading-relaxed font-normal drop-shadow">
                 Connecting Job Seekers with Top Employers in <span className="text-white font-semibold">KPO, BPO, Healthcare, Finance, Non IT, IT &amp; Software Jobs</span>.
               </p>
 
-              {/* Apply for Job CTA (Opens Contact & Application Form) */}
+              {/* All Services CTA (Opens All Services Page) */}
               <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => navigate('/contact?apply=true#apply-form')}
-                  className="px-6 py-3 sm:px-8 sm:py-3.5 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-2xl transition-all duration-150 inline-flex items-center gap-2 active:scale-95 border border-white/20"
+                  onClick={() => navigate('/services')}
+                  className="px-6 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#2563eb] hover:from-[#0369a1] hover:to-[#1d4ed8] text-white text-xs sm:text-sm font-bold rounded-xl shadow-[0_4px_18px_rgba(14,165,233,0.45)] transition-all duration-150 inline-flex items-center gap-2 active:scale-95 border border-sky-300/30"
                 >
-                  <span>Apply for Job</span>
+                  <span>All Services</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -247,7 +247,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== CORE SOLUTIONS SECTION ===================== */}
-      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-6 lg:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 gap-3">
             <div>
@@ -485,7 +485,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== WHY US SECTION ===================== */}
-      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-6 lg:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="relative rounded-3xl bg-gradient-to-br from-[#06142e] via-[#092247] to-[#0c3166] text-white p-6 sm:p-10 lg:p-12 overflow-hidden shadow-2xl border border-white/10">
             {/* Ambient Background Glow */}
@@ -560,7 +560,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
               <div className="flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => navigate('/contact?apply=true#apply-form')}
-                  className="px-5 py-2.5 bg-brand-red hover:bg-brand-redHover text-white text-xs font-bold rounded-xl shadow-lg transition-all"
+                  className="px-5 py-2.5 bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#2563eb] hover:from-[#0369a1] hover:to-[#1d4ed8] text-white text-xs font-bold rounded-xl shadow-[0_4px_16px_rgba(14,165,233,0.4)] border border-sky-300/30 transition-all"
                 >
                   Apply Now
                 </button>
@@ -577,7 +577,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== EXPLORE JOB CATEGORIES ===================== */}
-      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-6 lg:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
@@ -641,7 +641,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== MIDDLE 4-CARDS SECTION (FROM REFERENCE IMAGE) ===================== */}
-      <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-4 sm:py-6 lg:py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Card 1: Empowering Talent. Building Futures. */}
           <ScrollReveal delay={0}>
@@ -806,7 +806,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== OUR SERVICES SECTION ===================== */}
-      <section className="py-6 sm:py-8 lg:py-10 bg-white border-t border-slate-200">
+      <section className="py-4 sm:py-6 lg:py-8 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex items-center justify-between mb-5">
@@ -869,10 +869,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
       </section>
 
       {/* ===================== CTA BANNER ===================== */}
-      <section className="py-6 sm:py-8 bg-slate-50">
+      <section className="py-4 sm:py-6 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
-            <div className="relative rounded-3xl bg-gradient-to-r from-[#06142e] via-[#092247] to-[#0c3166] p-6 sm:p-10 text-white overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
+            <div className="relative rounded-3xl bg-gradient-to-r from-[#06142e] via-[#092247] to-[#0c3166] p-6 sm:p-8 text-white overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-5 border border-white/10">
               {/* Globe wireframe background effect */}
               <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-15 pointer-events-none flex items-center justify-end pr-10">
                 <Globe2 className="w-72 h-72 text-sky-300 animate-spin" style={{ animationDuration: '40s' }} />
@@ -893,7 +893,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenAuth }) => {
               <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
                 <button
                   onClick={() => navigate('/contact?apply=true#apply-form')}
-                  className="px-6 py-3 bg-brand-red hover:bg-brand-redHover text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-all duration-150 flex items-center gap-2 active:scale-95"
+                  className="px-6 py-3 bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#2563eb] hover:from-[#0369a1] hover:to-[#1d4ed8] text-white text-xs sm:text-sm font-bold rounded-xl shadow-[0_4px_16px_rgba(14,165,233,0.4)] border border-sky-300/30 transition-all duration-150 flex items-center gap-2 active:scale-95"
                 >
                   <span>Apply Now</span>
                   <ArrowRight className="w-4 h-4" />
