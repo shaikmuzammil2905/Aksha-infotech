@@ -375,6 +375,41 @@ export const INITIAL_JOBS: Job[] = [
   }
 ];
 
+// Category & Job Post Visual Mapping
+export const CATEGORY_IMAGE_MAP: Record<string, string> = {
+  'kpo-jobs': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+  'bpo-jobs': '/images/cat-bpo.jpg',
+  'healthcare-jobs': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80',
+  'finance-jobs': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+  'non-it-jobs': '/images/cat-non-it.jpg',
+  'it-software-jobs': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80',
+};
+
+const JOB_SPECIFIC_IMAGE_MAP: Record<string, string> = {
+  'it-dev-01': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80',
+  'bpo-exec-02': '/images/cat-bpo.jpg',
+  'kpo-analyst-03': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+  'fin-acc-04': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+  'health-code-05': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80',
+  'nonit-hr-06': '/images/cat-non-it.jpg',
+  'it-react-07': 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
+  'bpo-intl-08': 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80',
+  'kpo-fin-09': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+  'fin-tax-10': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
+  'nonit-ops-11': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80',
+  'health-nurse-12': 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80',
+};
+
+export const getCategoryImage = (slug: string): string => {
+  return CATEGORY_IMAGE_MAP[slug] || '/images/solution-placement.jpg';
+};
+
+export const getJobImage = (job: Pick<Job, 'id' | 'categorySlug' | 'image'>): string => {
+  if (job.image) return job.image;
+  if (JOB_SPECIFIC_IMAGE_MAP[job.id]) return JOB_SPECIFIC_IMAGE_MAP[job.id];
+  return getCategoryImage(job.categorySlug);
+};
+
 // Helper functions
 export const getActiveJobs = (): Job[] => {
   const stored = localStorage.getItem('aksha_jobs');

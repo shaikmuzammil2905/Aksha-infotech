@@ -59,7 +59,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-red selection:text-white pb-14 md:pb-0">
+    <div className="flex flex-col min-h-screen font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-red selection:text-white">
       <ScrollToTop />
 
       {/* Main Header */}
@@ -69,7 +69,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Router Content */}
-      <main className="flex-1">
+      <main className="flex-1 min-h-screen pb-24 md:pb-0 overflow-y-auto relative">
         <Routes>
           <Route path="/" element={<HomePage onOpenApply={handleOpenApply} onOpenAuth={handleOpenAuth} />} />
           <Route path="/about" element={<AboutPage />} />

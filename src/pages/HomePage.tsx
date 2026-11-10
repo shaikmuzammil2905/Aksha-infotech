@@ -4,13 +4,12 @@ import {
   Search, MapPin, ArrowRight, CheckCircle, Headphones, 
   HeartPulse, Coins, Users, Code2, Briefcase, FileText, 
   UserCheck, Award, GraduationCap, Handshake, Calendar,
-  TrendingUp, Sparkles, Building2, Clock, Globe2, CheckCircle2, ShieldCheck
+  Sparkles, Building2, Clock, Globe2, CheckCircle2, ShieldCheck
 } from 'lucide-react';
-import { Counter } from '../components/common/Counter';
 import { TypingCounter } from '../components/common/TypingCounter';
 import { ScrollReveal } from '../components/common/ScrollReveal';
 import { Job } from '../types/job';
-import { INITIAL_JOBS } from '../data/jobsData';
+import { INITIAL_JOBS, getCategoryImage, getJobImage } from '../data/jobsData';
 
 interface HomePageProps {
   onOpenApply: (job: Job) => void;
@@ -87,7 +86,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
   const featuredJobs = INITIAL_JOBS.slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-slate-50 overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50">
       {/* ===================== HERO SECTION ===================== */}
       <section className="relative bg-gradient-to-r from-[#06142e] via-[#092247] to-[#0d346b] text-white overflow-hidden border-b border-slate-800">
         {/* Desktop Hero Animated Background Image (image copy 2.png) - Bright & Crisp */}
@@ -290,42 +289,54 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           </div>
         </ScrollReveal>
 
-        {/* 4 Core Solution Cards */}
+        {/* 4 Core Solution Cards with Grand Pictorial Banners */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {/* Solution 1 */}
           <ScrollReveal delay={0}>
             <div 
               onClick={() => navigate('/hiring')}
-              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+              className="group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
             >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center border border-blue-100 group-hover:scale-105 transition-transform">
-                  <UserCheck className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-blue-50/70 px-2.5 py-0.5 rounded-full">
+              <div>
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100">
+                  <img
+                    src="/images/solution-placement.jpg"
+                    alt="Direct Candidate Placement"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/85 via-[#06142e]/25 to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-white/95 px-2.5 py-0.5 rounded-full shadow">
                     Job Placement
                   </span>
-                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-brand-blue transition-colors">
-                    Direct Candidate Placement
-                  </h3>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Connecting qualified candidates directly with hiring managers across IT, BPO, KPO, Healthcare, Finance, and Non-IT sectors with zero candidate fees.
-                </p>
-                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>Active client drives in Hyderabad &amp; Pan-India</span>
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-blue-50 text-brand-blue flex items-center justify-center border border-blue-100 shadow flex-shrink-0">
+                      <UserCheck className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow leading-tight">
+                      Direct Candidate Placement
+                    </h3>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>Fast interview feedback &amp; offer support</span>
+                </div>
+
+                <div className="p-4 sm:p-5 space-y-2.5">
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Connecting qualified candidates directly with hiring managers across IT, BPO, KPO, Healthcare, Finance, and Non-IT sectors with zero candidate fees.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>Active client drives in Hyderabad &amp; Pan-India</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>Fast interview feedback &amp; offer support</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-blue group-hover:translate-x-1 transition-transform">
+              <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-blue group-hover:translate-x-1 transition-transform">
                 <span>Explore Open Roles</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
@@ -336,36 +347,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           <ScrollReveal delay={100}>
             <div 
               onClick={() => navigate('/collaborate')}
-              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+              className="group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
             >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-rose-50 text-brand-red flex items-center justify-center border border-rose-100 group-hover:scale-105 transition-transform">
-                  <Building2 className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red bg-rose-50/70 px-2.5 py-0.5 rounded-full">
+              <div>
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=80"
+                    alt="Employer Recruitment Support"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/85 via-[#06142e]/25 to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-brand-red bg-white/95 px-2.5 py-0.5 rounded-full shadow">
                     Enterprise Staffing
                   </span>
-                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-brand-red transition-colors">
-                    Employer Recruitment Support
-                  </h3>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  High-speed corporate staffing pipelines delivering pre-screened, interview-ready profiles within 24 to 48 hours for contract, permanent, or bulk hiring.
-                </p>
-                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>24–48 hours profile turnaround</span>
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-rose-50 text-brand-red flex items-center justify-center border border-rose-100 shadow flex-shrink-0">
+                      <Building2 className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow leading-tight">
+                      Employer Recruitment Support
+                    </h3>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>Rigorous background &amp; skill screening</span>
+                </div>
+
+                <div className="p-4 sm:p-5 space-y-2.5">
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    High-speed corporate staffing pipelines delivering pre-screened, interview-ready profiles within 24 to 48 hours for contract, permanent, or bulk hiring.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>24–48 hours profile turnaround</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>Rigorous background &amp; skill screening</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-red group-hover:translate-x-1 transition-transform">
+              <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-red group-hover:translate-x-1 transition-transform">
                 <span>Collaborate With Us</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
@@ -376,36 +399,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           <ScrollReveal delay={200}>
             <div 
               onClick={() => navigate('/services')}
-              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+              className="group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
             >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 group-hover:scale-105 transition-transform">
-                  <FileText className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50/70 px-2.5 py-0.5 rounded-full">
+              <div>
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=900&q=80"
+                    alt="Resume Building and ATS Audit"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/85 via-[#06142e]/25 to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-white/95 px-2.5 py-0.5 rounded-full shadow">
                     Profile Enhancement
                   </span>
-                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-emerald-600 transition-colors">
-                    Resume Building &amp; ATS Audit
-                  </h3>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Restructure your CV to pass automated Applicant Tracking Systems with domain-targeted keywords, quantifiable accomplishments, and modern executive styling.
-                </p>
-                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>ATS keyword optimization by industry</span>
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shadow flex-shrink-0">
+                      <FileText className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow leading-tight">
+                      Resume Building &amp; ATS Audit
+                    </h3>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>3x increase in recruiter callbacks</span>
+                </div>
+
+                <div className="p-4 sm:p-5 space-y-2.5">
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Restructure your CV to pass automated Applicant Tracking Systems with domain-targeted keywords, quantifiable accomplishments, and modern executive styling.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>ATS keyword optimization by industry</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>3x increase in recruiter callbacks</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
+              <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform">
                 <span>View Resume Support</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
@@ -416,36 +451,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           <ScrollReveal delay={300}>
             <div 
               onClick={() => navigate('/services')}
-              className="group bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+              className="group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
             >
-              <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100 group-hover:scale-105 transition-transform">
-                  <GraduationCap className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50/70 px-2.5 py-0.5 rounded-full">
+              <div>
+                <div className="relative h-40 sm:h-44 w-full overflow-hidden bg-slate-100">
+                  <img
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80"
+                    alt="Skill Training and Mock Drills"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/85 via-[#06142e]/25 to-transparent" />
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider text-purple-600 bg-white/95 px-2.5 py-0.5 rounded-full shadow">
                     Interview Coaching
                   </span>
-                  <h3 className="font-bold text-base text-slate-900 mt-2 group-hover:text-purple-600 transition-colors">
-                    Skill Training &amp; Mock Drills
-                  </h3>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  One-on-one realistic mock interviews, STAR method behavioral coaching, voice &amp; accent preparation, and constructive debriefs that dramatically boost selection rates.
-                </p>
-                <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>Realistic HR &amp; technical simulations</span>
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-100 shadow flex-shrink-0">
+                      <GraduationCap className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-bold text-sm sm:text-base text-white drop-shadow leading-tight">
+                      Skill Training &amp; Mock Drills
+                    </h3>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                    <span>Personalized feedback &amp; salary negotiation</span>
+                </div>
+
+                <div className="p-4 sm:p-5 space-y-2.5">
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    One-on-one realistic mock interviews, STAR method behavioral coaching, voice &amp; accent preparation, and constructive debriefs that dramatically boost selection rates.
+                  </p>
+                  <div className="pt-2 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>Realistic HR &amp; technical simulations</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                      <span>Personalized feedback &amp; salary negotiation</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600 group-hover:translate-x-1 transition-transform">
+              <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600 group-hover:translate-x-1 transition-transform">
                 <span>View Interview Drills</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
@@ -566,34 +613,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
           </div>
         </ScrollReveal>
 
-        {/* 6 Category Cards: 2 cols on mobile (image copy.png), 3 on tablet, 6 on desktop */}
+        {/* 6 Category Cards: 2 cols on mobile, 3 on tablet, 6 on desktop */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
           {jobCategories.map((cat, idx) => {
             const Icon = cat.icon;
+            const catImg = getCategoryImage(cat.slug);
             return (
               <ScrollReveal key={cat.slug} delay={idx * 80}>
                 <div
                   onClick={() => navigate(`/services/${cat.slug}`)}
-                  className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
+                  className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full"
                 >
                   <div>
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-200 mb-3 ${cat.color}`}>
-                      <Icon className="w-6 h-6" />
+                    {/* Related Category Photo Header */}
+                    <div className="relative h-24 sm:h-28 w-full overflow-hidden bg-slate-100">
+                      <img
+                        src={catImg}
+                        alt={cat.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/80 via-[#06142e]/20 to-transparent" />
+                      <div className={`absolute bottom-2 left-2.5 w-8 h-8 rounded-lg flex items-center justify-center border shadow ${cat.color}`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
                     </div>
-                    <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-brand-blue transition-colors">
-                      {cat.title}
-                    </h3>
-                    <p className="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-relaxed hidden sm:block">
-                      {cat.description}
-                    </p>
+
+                    <div className="p-3 sm:p-4">
+                      <h3 className="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-brand-blue transition-colors">
+                        {cat.title}
+                      </h3>
+                      <p className="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-relaxed hidden sm:block">
+                        {cat.description}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="mt-4 pt-2 flex items-center justify-between text-xs">
+                  <div className="px-3 pb-3 sm:px-4 sm:pb-4 pt-1 flex items-center justify-between text-xs">
                     <span className="text-[11px] font-semibold text-slate-400 group-hover:text-brand-blue transition-colors">
                       Explore
                     </span>
-                    <div className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-brand-blue group-hover:text-white flex items-center justify-center transition-colors">
-                      <ArrowRight className="w-3.5 h-3.5" />
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-100 group-hover:bg-brand-blue group-hover:text-white flex items-center justify-center transition-colors">
+                      <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </div>
                   </div>
                 </div>
@@ -627,62 +688,69 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenApply, onOpenAuth }) =
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
             {featuredJobs.map((job, idx) => (
               <ScrollReveal key={job.id} delay={idx * 100}>
                 <div
-                  className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full"
+                  className="group bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full"
                 >
                   <div>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-brand-blue flex-shrink-0">
-                          <Building2 className="w-6 h-6" />
+                    {/* Related Job Role Image Banner */}
+                    <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-slate-100 cursor-pointer" onClick={() => navigate(`/jobs/${job.id}`)}>
+                      <img
+                        src={getJobImage(job)}
+                        alt={job.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/85 via-[#06142e]/25 to-transparent" />
+                      <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/95 text-brand-navy text-[10px] font-bold uppercase tracking-wider shadow">
+                        {job.employmentType}
+                      </span>
+                      <div className="absolute bottom-3 left-4 right-4 flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-white/95 border border-white flex items-center justify-center text-brand-blue flex-shrink-0 shadow">
+                          <Building2 className="w-5 h-5" />
                         </div>
                         <div>
-                          <h3 
-                            className="font-bold text-sm sm:text-base text-slate-900 hover:text-brand-blue transition-colors cursor-pointer" 
-                            onClick={() => navigate(`/jobs/${job.id}`)}
-                          >
+                          <h3 className="font-bold text-sm sm:text-base text-white drop-shadow leading-tight group-hover:text-sky-200 transition-colors">
                             {job.title}
                           </h3>
-                          <p className="text-xs text-slate-500 flex items-center gap-2 mt-0.5">
+                          <p className="text-[11px] text-sky-200 flex items-center gap-1.5 mt-0.5">
                             <span>{job.category}</span>
                             <span>•</span>
                             <span className="flex items-center gap-1">
-                              <MapPin className="w-3 h-3 text-slate-400" />
+                              <MapPin className="w-3 h-3" />
                               {job.location}
                             </span>
                           </p>
                         </div>
                       </div>
-                      <span className="px-2.5 py-1 rounded-full bg-sky-100 text-sky-800 text-[10px] font-bold uppercase tracking-wider flex-shrink-0">
-                        {job.employmentType}
-                      </span>
                     </div>
 
-                    <p className="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
-                      {job.description}
-                    </p>
+                    <div className="p-4 sm:p-5">
+                      <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                        {job.description}
+                      </p>
 
-                    <div className="flex flex-wrap items-center gap-4 mt-3 text-xs text-slate-500 font-medium pt-2 border-t border-slate-100">
-                      <span className="flex items-center gap-1">
-                        <Briefcase className="w-3.5 h-3.5 text-slate-400" />
-                        Exp: {job.experience}
-                      </span>
-                      <span>•</span>
-                      <span className="font-bold text-brand-navy">
-                        {job.salary}
-                      </span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                        <Clock className="w-3 h-3" />
-                        {job.postedDate}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-3 text-xs text-slate-500 font-medium pt-3 border-t border-slate-100">
+                        <span className="flex items-center gap-1">
+                          <Briefcase className="w-3.5 h-3.5 text-slate-400" />
+                          Exp: {job.experience}
+                        </span>
+                        <span>•</span>
+                        <span className="font-bold text-brand-navy">
+                          {job.salary}
+                        </span>
+                        <span>•</span>
+                        <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                          <Clock className="w-3 h-3" />
+                          {job.postedDate}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-100">
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
                     <button
                       onClick={() => navigate(`/jobs/${job.id}`)}
                       className="text-xs font-semibold text-slate-600 hover:text-brand-blue"

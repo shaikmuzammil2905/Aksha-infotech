@@ -20,7 +20,7 @@ export const FloatingContactPopup: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <div ref={popupRef} className="fixed bottom-20 md:bottom-6 right-5 z-40">
+    <div ref={popupRef} className="floating-whatsapp">
       {/* Floating WhatsApp Action Trigger Button - Icon Only */}
       {!isOpen && (
         <button

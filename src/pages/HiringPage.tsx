@@ -4,8 +4,8 @@ import {
   Search, MapPin, Filter, RotateCcw, Briefcase, 
   Building2, Clock, ArrowRight, CheckCircle2, ChevronRight 
 } from 'lucide-react';
-import { Job, JobCategory } from '../types/job';
-import { searchJobs } from '../data/jobsData';
+import { Job } from '../types/job';
+import { searchJobs, getJobImage } from '../data/jobsData';
 
 interface HiringPageProps {
   onOpenApply: (job: Job) => void;
@@ -276,74 +276,95 @@ export const HiringPage: React.FC<HiringPageProps> = ({ onOpenApply }) => {
               jobsList.map((job) => (
                 <div
                   key={job.id}
-                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-blue/40 transition-all duration-200 flex flex-col justify-between"
+                  className="group bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg hover:border-brand-blue/40 transition-all duration-200 flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                      <div className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-sky-50 border border-sky-100 text-brand-blue flex items-center justify-center flex-shrink-0">
-                          <Building2 className="w-6 h-6" />
-                        </div>
-                        <div>
-                          <h3 
-                            onClick={() => navigate(`/jobs/${job.id}`)}
-                            className="font-black text-base sm:text-lg text-slate-900 hover:text-brand-blue transition-colors cursor-pointer"
-                          >
-                            {job.title}
-                          </h3>
-                          <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-500">
-                            <span className="font-semibold text-slate-700">{job.company}</span>
-                            <span>•</span>
-                            <span className="text-brand-blue font-medium">{job.category}</span>
-                            <span>•</span>
-                            <span className="flex items-center gap-1">
-                              <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                              {job.location}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 self-start sm:self-auto">
-                        <span className="px-3 py-1 rounded-full bg-sky-50 text-brand-blue text-xs font-bold border border-sky-100">
+                    <div className="flex flex-col sm:flex-row">
+                      {/* Related Job Role Thumbnail */}
+                      <div
+                        onClick={() => navigate(`/jobs/${job.id}`)}
+                        className="relative sm:w-48 h-40 sm:h-auto flex-shrink-0 overflow-hidden bg-slate-100 cursor-pointer"
+                      >
+                        <img
+                          src={getJobImage(job)}
+                          alt={job.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#06142e]/60 via-transparent to-transparent sm:hidden" />
+                        <span className="absolute top-3 left-3 sm:hidden px-2.5 py-1 rounded-full bg-white/95 text-brand-blue text-[10px] font-bold shadow">
                           {job.employmentType}
                         </span>
                       </div>
-                    </div>
 
-                    <p className="text-xs text-slate-600 mt-4 leading-relaxed line-clamp-2">
-                      {job.description}
-                    </p>
+                      <div className="p-5 sm:p-6 flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                          <div className="flex items-start gap-3">
+                            <div className="w-11 h-11 rounded-xl bg-sky-50 border border-sky-100 text-brand-blue flex items-center justify-center flex-shrink-0">
+                              <Building2 className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <h3 
+                                onClick={() => navigate(`/jobs/${job.id}`)}
+                                className="font-black text-base sm:text-lg text-slate-900 hover:text-brand-blue transition-colors cursor-pointer"
+                              >
+                                {job.title}
+                              </h3>
+                              <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-slate-500">
+                                <span className="font-semibold text-slate-700">{job.company}</span>
+                                <span>•</span>
+                                <span className="text-brand-blue font-medium">{job.category}</span>
+                                <span>•</span>
+                                <span className="flex items-center gap-1">
+                                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                                  {job.location}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
 
-                    {/* Skill Tags */}
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {job.skills.map((skill, i) => (
-                        <span key={i} className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-medium">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+                          <div className="hidden sm:flex items-center gap-2">
+                            <span className="px-3 py-1 rounded-full bg-sky-50 text-brand-blue text-xs font-bold border border-sky-100 whitespace-nowrap">
+                              {job.employmentType}
+                            </span>
+                          </div>
+                        </div>
 
-                    {/* Metadata Row */}
-                    <div className="flex flex-wrap items-center gap-4 mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
-                      <span className="flex items-center gap-1">
-                        <Briefcase className="w-3.5 h-3.5 text-slate-400" />
-                        Experience: <strong className="text-slate-800">{job.experience}</strong>
-                      </span>
-                      <span>•</span>
-                      <span>
-                        Package: <strong className="text-brand-red">{job.salary}</strong>
-                      </span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                        <Clock className="w-3.5 h-3.5" />
-                        Posted {job.postedDate}
-                      </span>
+                        <p className="text-xs text-slate-600 mt-3 leading-relaxed line-clamp-2">
+                          {job.description}
+                        </p>
+
+                        {/* Skill Tags */}
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {job.skills.map((skill, i) => (
+                            <span key={i} className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-medium">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Metadata Row */}
+                        <div className="flex flex-wrap items-center gap-4 mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">
+                          <span className="flex items-center gap-1">
+                            <Briefcase className="w-3.5 h-3.5 text-slate-400" />
+                            Experience: <strong className="text-slate-800">{job.experience}</strong>
+                          </span>
+                          <span>•</span>
+                          <span>
+                            Package: <strong className="text-brand-red">{job.salary}</strong>
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1 text-[11px] text-slate-400">
+                            <Clock className="w-3.5 h-3.5" />
+                            Posted {job.postedDate}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="flex items-center justify-between gap-3 mt-5 pt-3 border-t border-slate-100">
+                  <div className="px-5 pb-5 sm:px-6 sm:pb-6 flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
                     <button
                       onClick={() => navigate(`/jobs/${job.id}`)}
                       className="text-xs font-bold text-slate-700 hover:text-brand-blue flex items-center gap-1"

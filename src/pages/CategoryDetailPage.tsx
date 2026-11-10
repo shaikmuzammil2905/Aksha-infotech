@@ -5,7 +5,7 @@ import {
   DollarSign, Clock, ChevronRight, Award, ShieldCheck, PhoneCall 
 } from 'lucide-react';
 import { Job, JobCategory } from '../types/job';
-import { getJobsByCategory } from '../data/jobsData';
+import { getJobsByCategory, getCategoryImage } from '../data/jobsData';
 
 interface CategoryDetailPageProps {
   onOpenApply: (job: Job) => void;
@@ -220,6 +220,12 @@ export const CategoryDetailPage: React.FC<CategoryDetailPageProps> = ({ onOpenAp
 
         {/* Hero Banner */}
         <div className="bg-gradient-to-r from-brand-dark via-brand-navy to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden border border-white/10">
+          <img
+            src={getCategoryImage(activeSlug)}
+            alt={categoryData.categoryName}
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity pointer-events-none"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06142e]/95 via-[#06142e]/80 to-transparent pointer-events-none" />
           <div className="relative z-10 max-w-2xl space-y-4">
             <span className="inline-block px-3 py-1 rounded-full bg-brand-red text-white text-xs font-bold uppercase tracking-wider">
               {categoryData.categoryName}

@@ -6,7 +6,7 @@ import {
   ShieldCheck, ArrowRight, DollarSign, Award, ChevronRight
 } from 'lucide-react';
 import { Job } from '../types/job';
-import { getJobById } from '../data/jobsData';
+import { getJobById, getJobImage } from '../data/jobsData';
 
 interface JobDetailPageProps {
   onOpenApply: (job: Job) => void;
@@ -74,7 +74,16 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
         </div>
 
         {/* Job Header Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm relative">
+          <div className="relative h-40 sm:h-48 w-full overflow-hidden bg-slate-900">
+            <img
+              src={getJobImage(job)}
+              alt={job.title}
+              className="w-full h-full object-cover opacity-80"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+          </div>
+          <div className="p-6 sm:p-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-start gap-4">
               <div className="w-16 h-16 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-brand-blue flex-shrink-0 shadow-inner">
@@ -160,6 +169,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ onOpenApply }) => 
                 {job.openings || 'Multiple'} Positions
               </strong>
             </div>
+          </div>
           </div>
         </div>
 

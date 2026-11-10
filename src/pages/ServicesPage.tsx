@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Briefcase, FileText, UserCheck, Award, GraduationCap, Handshake, 
-  ArrowRight, CheckCircle2, PhoneCall, ChevronRight, Sparkles 
+  ArrowRight, CheckCircle2, PhoneCall, Sparkles 
 } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -19,7 +19,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenPostJob }) => 
       icon: Briefcase,
       color: 'bg-blue-50 text-brand-blue border-blue-200',
       badge: 'Core Program',
-      image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80',
+      image: '/images/solution-placement.jpg',
       tagline: 'Connecting qualified candidates with pre-screened hiring corporate clients.',
       description: 'We bridge the gap between talented job seekers and established companies across India. Our dedicated placement executives assist you from initial profile screening to final offer letter release.',
       features: [

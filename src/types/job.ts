@@ -28,6 +28,7 @@ export interface Job {
   status: 'active' | 'inactive';
   isFeatured?: boolean;
   openings?: number;
+  image?: string;
 }
 
 export interface ApplicationSubmission {
