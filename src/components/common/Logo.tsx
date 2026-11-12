@@ -22,23 +22,23 @@ export const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
         className={`${imgHeight} w-auto object-contain drop-shadow-[0_0_12px_rgba(251,191,36,0.35)] transition-transform duration-300 group-hover:scale-105 flex-shrink-0`}
       />
 
-      {/* Brand Typography Beside Logo */}
+      {/* Brand Typography Beside Logo (as before) */}
       <div className="flex flex-col select-none leading-none">
-        <div className="flex items-baseline gap-1.5 tracking-tight">
-          <span className={`font-black text-white font-sans tracking-wide drop-shadow ${isSm ? 'text-base sm:text-lg' : isLg ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl md:text-2xl'}`}>
-            Aksha Infotech
-          </span>
-          <span className={`font-bold text-amber-400 tracking-wide ${isSm ? 'text-[10px]' : 'text-xs sm:text-sm'}`}>
-            Pvt Ltd
+        <div className="flex items-baseline tracking-tight">
+          <span className={`font-black text-brand-red font-sans tracking-wide ${isSm ? 'text-lg' : isLg ? 'text-2xl' : 'text-xl sm:text-2xl'}`}>
+            AKSHA
           </span>
         </div>
-        <div className="flex items-center gap-1.5 mt-1">
-          <span className="h-[1px] bg-amber-400/70 w-2.5 sm:w-3.5"></span>
-          <span className={`font-semibold italic tracking-wide text-slate-200 ${isSm ? 'text-[9px]' : 'text-[10px] sm:text-xs'}`}>
-            Best guide for bright future
+        <div className="flex items-center gap-1 my-0.5">
+          <span className="h-[1px] bg-sky-400 w-2"></span>
+          <span className={`font-bold tracking-wider text-sky-400 uppercase ${isSm ? 'text-[8px]' : 'text-[9.5px] sm:text-[10.5px]'}`}>
+            INFOTECH PVT LTD
           </span>
-          <span className="h-[1px] bg-amber-400/70 w-2.5 sm:w-3.5"></span>
+          <span className="h-[1px] bg-sky-400 w-2"></span>
         </div>
+        <span className={`font-extrabold tracking-wider text-brand-red uppercase ${isSm ? 'text-[6.5px]' : 'text-[7.5px] sm:text-[8.5px]'}`}>
+          BEST GUIDE FOR RIGHT FUTURE
+        </span>
       </div>
     </Link>
   );

@@ -44,13 +44,20 @@ export const SplashScreen: React.FC = () => {
         />
 
         {/* Brand Name & Tagline */}
-        <div className="relative z-10 mt-4 space-y-1 animate-fade-up">
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-wide">
-            Aksha Infotech <span className="text-amber-400">Pvt Ltd</span>
-          </h2>
-          <p className="text-xs sm:text-sm font-semibold italic text-sky-200/90">
-            &mdash; Best guide for bright future &mdash;
-          </p>
+        <div className="relative z-10 mt-4 flex flex-col items-center leading-none space-y-1 animate-fade-up">
+          <span className="text-3xl sm:text-4xl font-black text-brand-red tracking-wide">
+            AKSHA
+          </span>
+          <div className="flex items-center gap-1.5 my-1">
+            <span className="h-[1px] bg-sky-400 w-4"></span>
+            <span className="text-xs sm:text-sm font-bold tracking-widest text-sky-400 uppercase">
+              INFOTECH PVT LTD
+            </span>
+            <span className="h-[1px] bg-sky-400 w-4"></span>
+          </div>
+          <span className="text-[10px] sm:text-xs font-extrabold tracking-widest text-brand-red uppercase">
+            BEST GUIDE FOR RIGHT FUTURE
+          </span>
         </div>
 
         {/* Animated Shimmer Loading Bar */}
